@@ -1,0 +1,49 @@
+# general settings
+name: Enhancement_RetinexFormer_SDSD_outdoor
+model_type: ImageCleanModel
+scale: 1
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 100
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: TrainSet
+
+  val:
+    name: ValSet
+    type: Dataset_SDSDImage
+    dataroot_gt: data/SDSD/outdoor_static_np/GT
+    dataroot_lq: data/SDSD/outdoor_static_np/input
+    cache_data: true
+    N_frames: 5
+    padding: new_info
+    train_size: [960, 512]
+    testing_dir: MVI_0898,MVI_0928,MVI_0906,MVI_0975,MVI_1001,MVI_0997,MVI_1003,MVI_1026,MVI_1030,MVI_1032
+
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: RetinexFormer
+  in_channels: 3
+  out_channels: 3
+  n_feat: 40
+  stage: 1
+  num_blocks: [1,2,2]
+
+
+# path
+path:
+  pretrain_network_g: ~
+
+# training settings
+train:
+  mixing_augs:
+    mixup: false
+
+# validation settings
+val:
+  name: val_setting
+

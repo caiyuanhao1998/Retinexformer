@@ -1,0 +1,9 @@
+LICENSE.md
+README.md
+setup.cfg
+setup.py
+basicsr.egg-info/PKG-INFO
+basicsr.egg-info/SOURCES.txt
+basicsr.egg-info/dependency_links.txt
+basicsr.egg-info/not-zip-safe
+basicsr.egg-info/top_level.txt
