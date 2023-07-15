@@ -210,7 +210,8 @@ PS: sid和smid从小写变成大写。FiveK数据集需要下载，上传，提�
 
 
 ## 3. Test
-```
+
+```shell
 # LOL-v1
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v1.yml --weights pretrained_weights/LOL_v1.pth --dataset LOL_v1
 
