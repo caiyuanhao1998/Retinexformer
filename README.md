@@ -1,3 +1,8 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sid?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sid?p=retinexformer-one-stage-retinex-based)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lol)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/photo-retouching-on-mit-adobe-5k)](https://paperswithcode.com/sota/photo-retouching-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
 # Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement (ICCV 2023)
 
 
@@ -29,7 +34,24 @@ python setup.py develop --no_cuda_ext
 ```
 
 ## 2. Prepare Dataset
-Download LOL-v1, LOL-v2, SDSD, SMID, SID, and FiveK datasets. Then orgnize them as follows:
+Download the following datasets:
+LOL-v1 [Baidu Pan(code: ssd0)](https://pan.baidu.com/share/init?surl=spt0kYU3OqsQSND-be4UaA)
+
+LOL-v2 [Baidu Pan(code: I9xm)](https://pan.baidu.com/share/init?surl=U9ePTfeLlnEbr5dtI1tm5g)
+
+SID [Baidu Pan(code: gplv)](https://pan.baidu.com/share/init?surl=HRr-5LJO0V0CWqtoctQp9w), [Google Drive](https://drive.google.com/drive/folders/1eQ-5Z303sbASEvsgCBSDbhijzLTWQJtR?usp=share_link&pli=1)
+
+SMID [Baidu Pan(code: btux)](https://pan.baidu.com/share/init?surl=Qol_4GsIjGDR8UT9IRZbBQ), [Google Drive](https://drive.google.com/drive/folders/1OV4XgVhipsRqjbp8SYr-4Rpk3mPwvdvG)
+
+SDSD-indoor [Baidu Pan(code: jo1v)](https://pan.baidu.com/s/1rfRzshGNcL0MX5soRNuwTA?errmsg=Auth+Login+Params+Not+Corret&errno=2&ssnerror=0#list/path=%2F), [Google Drive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
+
+SDSD-outdoor [Baidu Pan(code: uibk)](https://pan.baidu.com/share/init?surl=JzDQnFov-u6aBPPgjSzSxQ), [Google Dive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
+
+MIT-Adobe FiveK [Official](https://data.csail.mit.edu/graphics/fivek/), [Baidu (processed, code:as61)](https://pan.baidu.com/s/14V95paAifvOg7Gfy4ZGQOw?pwd=as61) 
+
+Please process the MIT Adobe FiveK dataset following [the sRGB setting](nothinglo/Deep-Photo-Enhancer#38)
+
+Then orgnize these datasets as follows:
 
 ```
     |--data   
