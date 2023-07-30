@@ -262,6 +262,8 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 
 ## 4. Training
 
+Feel free to check our training logs from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/16NtLba_ANe3Vzji-eZ1xAA?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1HU_wEn_95Hakxi_ze-pS6Htikmml5MTA?usp=sharing).
+
 ```shell
 # LOL-v1
 python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml
