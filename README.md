@@ -262,7 +262,7 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 
 ## 4. Training
 
-Feel free to check our training logs from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/16NtLba_ANe3Vzji-eZ1xAA?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1HU_wEn_95Hakxi_ze-pS6Htikmml5MTA?usp=sharing).
+Feel free to check our training logs from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/16NtLba_ANe3Vzji-eZ1xAA?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1HU_wEn_95Hakxi_ze-pS6Htikmml5MTA?usp=sharing)
 
 ```shell
 # LOL-v1
@@ -288,6 +288,18 @@ python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 
 # FiveK
 python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
+```
+
+
+## 5. Citation
+
+```shell
+@inproceedings{retinexformer,
+  title={Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement},
+  author={Yuanhao Cai and Hao Bian and Jing Lin and Haoqian Wang and Radu Timofte and Yulun Zhang},
+  booktitle={ICCV},
+  year={2023}
+}
 ```
 
 **Acknowledgment:** Our code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
