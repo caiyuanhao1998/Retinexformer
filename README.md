@@ -35,19 +35,19 @@ python setup.py develop --no_cuda_ext
 
 ## 2. Prepare Dataset
 Download the following datasets:
-LOL-v1 [Baidu Pan(code: ssd0)](https://pan.baidu.com/share/init?surl=spt0kYU3OqsQSND-be4UaA)
+LOL-v1 [Baidu Disk (code: ssd0)](https://pan.baidu.com/share/init?surl=spt0kYU3OqsQSND-be4UaA)
 
-LOL-v2 [Baidu Pan(code: I9xm)](https://pan.baidu.com/share/init?surl=U9ePTfeLlnEbr5dtI1tm5g)
+LOL-v2 [Baidu Disk (code: I9xm)](https://pan.baidu.com/share/init?surl=U9ePTfeLlnEbr5dtI1tm5g)
 
-SID [Baidu Pan(code: gplv)](https://pan.baidu.com/share/init?surl=HRr-5LJO0V0CWqtoctQp9w), [Google Drive](https://drive.google.com/drive/folders/1eQ-5Z303sbASEvsgCBSDbhijzLTWQJtR?usp=share_link&pli=1)
+SID [Baidu Disk (code: gplv)](https://pan.baidu.com/share/init?surl=HRr-5LJO0V0CWqtoctQp9w), [Google Drive](https://drive.google.com/drive/folders/1eQ-5Z303sbASEvsgCBSDbhijzLTWQJtR?usp=share_link&pli=1)
 
-SMID [Baidu Pan(code: btux)](https://pan.baidu.com/share/init?surl=Qol_4GsIjGDR8UT9IRZbBQ), [Google Drive](https://drive.google.com/drive/folders/1OV4XgVhipsRqjbp8SYr-4Rpk3mPwvdvG)
+SMID [Baidu Disk (code: btux)](https://pan.baidu.com/share/init?surl=Qol_4GsIjGDR8UT9IRZbBQ), [Google Drive](https://drive.google.com/drive/folders/1OV4XgVhipsRqjbp8SYr-4Rpk3mPwvdvG)
 
-SDSD-indoor [Baidu Pan(code: jo1v)](https://pan.baidu.com/s/1rfRzshGNcL0MX5soRNuwTA?errmsg=Auth+Login+Params+Not+Corret&errno=2&ssnerror=0#list/path=%2F), [Google Drive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
+SDSD-indoor [Baidu Disk (code: jo1v)](https://pan.baidu.com/s/1rfRzshGNcL0MX5soRNuwTA?errmsg=Auth+Login+Params+Not+Corret&errno=2&ssnerror=0#list/path=%2F), [Google Drive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
 
-SDSD-outdoor [Baidu Pan(code: uibk)](https://pan.baidu.com/share/init?surl=JzDQnFov-u6aBPPgjSzSxQ), [Google Dive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
+SDSD-outdoor [Baidu Disk (code: uibk)](https://pan.baidu.com/share/init?surl=JzDQnFov-u6aBPPgjSzSxQ), [Google Drive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
 
-MIT-Adobe FiveK [Baidu (processed, code:as61)](https://pan.baidu.com/s/14V95paAifvOg7Gfy4ZGQOw?pwd=as61), [Official](https://data.csail.mit.edu/graphics/fivek/)
+MIT-Adobe FiveK [Baidu Disk (processed, code:as61)](https://pan.baidu.com/s/14V95paAifvOg7Gfy4ZGQOw?pwd=as61), [Official](https://data.csail.mit.edu/graphics/fivek/)
 
 Please process the MIT Adobe FiveK dataset following [the sRGB setting](nothinglo/Deep-Photo-Enhancer#38)
 
@@ -232,6 +232,8 @@ PS: sid和smid从小写变成大写。FiveK数据集需要下载，上传，提�
 
 
 ## 3. Test
+
+Download our trained models from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in the folder `pretrained_weights'
 
 ```shell
 # LOL-v1
