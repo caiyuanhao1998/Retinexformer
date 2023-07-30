@@ -43,7 +43,7 @@ Download LOL-v1, LOL-v2, SDSD, SMID, SID, and FiveK datasets. Then orgnize them 
     |    |    |    |    |--100.png
     |    |    |    |    |--101.png
     |    |    |    |     ...
-	|    |    |--Test
+    |    |    |--Test
     |    |    |    |--input
     |    |    |    |    |--111.png
     |    |    |    |    |--146.png
