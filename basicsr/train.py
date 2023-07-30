@@ -30,7 +30,7 @@ def parse_options(is_train=True):
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--opt', type=str, default='Options/MST++/MST_plus_plus_Lolv2_synthetic_1x8_debug.yml', help='Path to option YAML file.')
-    parser.add_argument('--gpus', type=str, default="5", help='GPU devices.')
+    parser.add_argument('--gpu', type=str, default="5", help='GPU devices.')
 
     parser.add_argument(
         '--launcher',

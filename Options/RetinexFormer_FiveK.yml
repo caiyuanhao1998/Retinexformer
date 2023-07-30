@@ -1,5 +1,5 @@
 # general settings
-name: Enhancement_RetinexFormer_1stg_122_280x280_fivek
+name: Enhancement_RetinexFormer_FiveK
 model_type: ImageCleanModel
 scale: 1
 num_gpu: 1  # set num_gpu: 0 for cpu mode
@@ -10,8 +10,8 @@ datasets:
   train:
     name: TrainSet
     type: Dataset_PairedImage
-    dataroot_gt: /data1/cyh20/data/FiveK_sRGB/split_InputAsShotZeroed/train/target
-    dataroot_lq: /data1/cyh20/data/FiveK_sRGB/split_InputAsShotZeroed/train/input
+    dataroot_gt: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/train/target
+    dataroot_lq: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/train/input
     geometric_augs: true
 
     filename_tmpl: '{}'
@@ -43,8 +43,8 @@ datasets:
   val:
     name: ValSet
     type: Dataset_PairedImage
-    dataroot_gt: /data1/cyh20/data/FiveK_sRGB/split_InputAsShotZeroed/test/target
-    dataroot_lq: /data1/cyh20/data/FiveK_sRGB/split_InputAsShotZeroed/test/input
+    dataroot_gt: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/test/target
+    dataroot_lq: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/test/input
     io_backend:
       type: disk
 

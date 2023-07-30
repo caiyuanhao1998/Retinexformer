@@ -265,28 +265,28 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 
 ```shell
 # LOL-v1
-python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml --weights pretrained_weights/LOL_v1.pth --dataset LOL_v1
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml --gpu_id 0
 
 # LOL-v2-real
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_real.yml --weights pretrained_weights/LOL_v2_real.pth --dataset LOL_v2_real
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_real.yml --gpu_id 0
 
 # LOL-v2-synthetic
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml --weights pretrained_weights/LOL_v2_synthetic.pth --dataset LOL_v2_synthetic
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml --gpu_id 0
 
 # SID
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SID.yml --weights pretrained_weights/SID.pth --dataset SID
+python3 basicsr/train.py --opt Options/RetinexFormer_SID.yml --gpu_id 0
 
 # SMID
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SMID.yml --weights pretrained_weights/SMID.pth --dataset SMID
+python3 basicsr/train.py --opt Options/RetinexFormer_SMID.yml --gpu_id 0
 
 # SDSD-indoor
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_indoor.yml --weights pretrained_weights/SDSD_indoor.pth --dataset SDSD_indoor
+python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_indoor.yml --gpu_id 0
 
 # SDSD-outdoor
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoor.yml --weights pretrained_weights/SDSD_outdoor.pth --dataset SDSD_outdoor
+python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml --gpu_id 0
 
 # FiveK
-python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
+python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml --gpu_id 0
 ```
 
 **Acknowledgment:** Our code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
