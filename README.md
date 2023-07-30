@@ -231,7 +231,7 @@ PS: sid和smid从小写变成大写。FiveK数据集需要下载，上传，提�
                     
 
 
-## 3. Test
+## 3. Testing
 
 Download our trained models from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in the folder `pretrained_weights'
 
@@ -261,7 +261,33 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoo
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
 ```
 
+## 4. Training
 
+```shell
+# LOL-v1
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml --weights pretrained_weights/LOL_v1.pth --dataset LOL_v1
+
+# LOL-v2-real
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_real.yml --weights pretrained_weights/LOL_v2_real.pth --dataset LOL_v2_real
+
+# LOL-v2-synthetic
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml --weights pretrained_weights/LOL_v2_synthetic.pth --dataset LOL_v2_synthetic
+
+# SID
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SID.yml --weights pretrained_weights/SID.pth --dataset SID
+
+# SMID
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SMID.yml --weights pretrained_weights/SMID.pth --dataset SMID
+
+# SDSD-indoor
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_indoor.yml --weights pretrained_weights/SDSD_indoor.pth --dataset SDSD_indoor
+
+# SDSD-outdoor
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoor.yml --weights pretrained_weights/SDSD_outdoor.pth --dataset SDSD_outdoor
+
+# FiveK
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
+```
 
 **Acknowledgment:** Our code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
 
