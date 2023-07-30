@@ -227,13 +227,12 @@ Then orgnize these datasets as follows:
     |    |    |    |     ...
 
 ```
-PS: sid和smid从小写变成大写。FiveK数据集需要下载，上传，提供导出后图片的下载链接。FiveK分成input和GT即可。
                     
 
 
 ## 3. Testing
 
-Download our trained models from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in the folder `pretrained_weights'
+Download our trained models from [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in the folder `pretrained_weights`
 
 ```shell
 # LOL-v1
