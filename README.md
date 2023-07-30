@@ -265,28 +265,28 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 
 ```shell
 # LOL-v1
-python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml
 
 # LOL-v2-real
-python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_real.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_real.yml
 
 # LOL-v2-synthetic
-python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml
 
 # SID
-python3 basicsr/train.py --opt Options/RetinexFormer_SID.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_SID.yml
 
 # SMID
-python3 basicsr/train.py --opt Options/RetinexFormer_SMID.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_SMID.yml
 
 # SDSD-indoor
-python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_indoor.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_indoor.yml
 
 # SDSD-outdoor
-python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 
 # FiveK
-python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml --gpu_id 0
+python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ```
 
 **Acknowledgment:** Our code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 

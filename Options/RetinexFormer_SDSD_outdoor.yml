@@ -13,8 +13,8 @@ datasets:
     # interval_list: [1]
     random_reverse: false
     border_mode: false
-    dataroot_gt: ~/low_light/data/SDSD/outdoor_static_np/GT
-    dataroot_lq: ~/low_light/data/SDSD/outdoor_static_np/input
+    dataroot_gt: Retinexformer/data/SDSD/outdoor_static_np/GT
+    dataroot_lq: Retinexformer/data/SDSD/outdoor_static_np/input
     train_size: [960, 512]
     cache_keys: ~
     cache_data: true
@@ -56,8 +56,8 @@ datasets:
   val:
     name: ValSet
     type: Dataset_SDSDImage
-    dataroot_gt: ~/low_light/data/SDSD/outdoor_static_np/GT
-    dataroot_lq: ~/low_light/data/SDSD/outdoor_static_np/input
+    dataroot_gt: Retinexformer/data/SDSD/outdoor_static_np/GT
+    dataroot_lq: Retinexformer/data/SDSD/outdoor_static_np/input
     cache_data: true
     N_frames: 5
     padding: new_info
