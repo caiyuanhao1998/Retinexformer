@@ -37,7 +37,7 @@ python setup.py develop --no_cuda_ext
 Download the following datasets:
 LOL-v1 [Baidu Disk (code: ssd0)](https://pan.baidu.com/share/init?surl=spt0kYU3OqsQSND-be4UaA)
 
-LOL-v2 [Baidu Disk (code: I9xm)](https://pan.baidu.com/share/init?surl=U9ePTfeLlnEbr5dtI1tm5g)
+LOL-v2 [Baidu Disk (code: cyh2)](https://pan.baidu.com/s/10Rb6cmdZUpWzfMKtMk0OQQ?pwd=cyh2)
 
 SID [Baidu Disk (code: gplv)](https://pan.baidu.com/share/init?surl=HRr-5LJO0V0CWqtoctQp9w), [Google Drive](https://drive.google.com/drive/folders/1eQ-5Z303sbASEvsgCBSDbhijzLTWQJtR?usp=share_link&pli=1)
 
