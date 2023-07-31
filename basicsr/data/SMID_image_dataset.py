@@ -29,7 +29,7 @@ class Dataset_SMIDImage(data.Dataset):
 
         testing_dir = []
         data_root = os.path.dirname(self.GT_root)
-        # f = open('~/low_light/data/smid/test_list.txt')
+
         f = open(os.path.join(data_root, 'test_list.txt'))
         lines = f.readlines()
         for mm in range(len(lines)):

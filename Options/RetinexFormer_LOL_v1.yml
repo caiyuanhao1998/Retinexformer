@@ -10,8 +10,8 @@ datasets:
   train:
     name: TrainSet
     type: Dataset_PairedImage
-    dataroot_gt: Retinexformer/data/LOL_v1/Train/target
-    dataroot_lq: Retinexformer/data/LOL_v1/Train/input
+    dataroot_gt: data/LOLv1/Train/target
+    dataroot_lq: data/LOLv1/Train/input
     geometric_augs: true
 
     filename_tmpl: '{}'
@@ -43,8 +43,8 @@ datasets:
   val:
     name: ValSet
     type: Dataset_PairedImage
-    dataroot_gt: Retinexformer/data/LOL_v1/Test/target
-    dataroot_lq: Retinexformer/data/LOL_v1/Test/input
+    dataroot_gt: data/LOLv1/Test/target
+    dataroot_lq: data/LOLv1/Test/input
     io_backend:
       type: disk
 

@@ -10,10 +10,10 @@ datasets:
   train:
     name: TrainSet
     type: Dataset_PairedImage
-    dataroot_gt: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/train/target
-    dataroot_lq: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/train/input
+    dataroot_gt: data/FiveK/train/target
+    dataroot_lq: data/FiveK/train/target
     geometric_augs: true
-
+    cache_data: true
     filename_tmpl: '{}'
     io_backend:
       type: disk
@@ -43,8 +43,8 @@ datasets:
   val:
     name: ValSet
     type: Dataset_PairedImage
-    dataroot_gt: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/test/target
-    dataroot_lq: Retinexformer/data/FiveK_sRGB/split_InputAsShotZeroed/test/input
+    dataroot_gt: data/FiveK/test/target
+    dataroot_lq: data/FiveK/test/input
     io_backend:
       type: disk
 

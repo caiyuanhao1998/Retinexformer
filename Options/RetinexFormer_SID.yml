@@ -13,8 +13,8 @@ datasets:
     # interval_list: [1]
     random_reverse: false
     border_mode: false
-    dataroot_gt: Retinexformer/data/SID/long_sid2
-    dataroot_lq: Retinexformer/data/SID/short_sid2
+    dataroot_gt: data/SID/long_sid2
+    dataroot_lq: data/SID/short_sid2
     train_size: [960, 512]
     cache_keys: ~
     cache_data: true
@@ -56,8 +56,8 @@ datasets:
   val:
     name: ValSet
     type: Dataset_SIDImage
-    dataroot_gt: Retinexformer/data/SID/long_sid2
-    dataroot_lq: Retinexformer/data/SID/short_sid2
+    dataroot_gt: data/SID/long_sid2
+    dataroot_lq: data/SID/short_sid2
     cache_data: true
     N_frames: 5
     padding: new_info

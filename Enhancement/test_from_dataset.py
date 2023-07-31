@@ -32,12 +32,12 @@ parser.add_argument('--input_dir', default='./Enhancement/Datasets',
 parser.add_argument('--result_dir', default='./results/',
                     type=str, help='Directory for results')
 parser.add_argument(
-    '--opt', type=str, default='Options/RetinexFormer/SID/RetinexFormer_1stg_122_SID_b4_c40_300k_iter.yml', help='Path to option YAML file.')
-parser.add_argument('--weights', default='experiments/Retinexformer_SID/best_psnr_24.44_168000.pth',
+    '--opt', type=str, default='Options/RetinexFormer_SMID.yml', help='Path to option YAML file.')
+parser.add_argument('--weights', default='pretrained_weights/SMID.pth',
                     type=str, help='Path to weights')
-parser.add_argument('--dataset', default='SID', type=str,
+parser.add_argument('--dataset', default='SMID', type=str,
                     help='Test Dataset') 
-parser.add_argument('--gpus', type=str, default="1", help='GPU devices.')
+parser.add_argument('--gpus', type=str, default="0", help='GPU devices.')
 
 args = parser.parse_args()
 
@@ -148,18 +148,9 @@ if dataset in ['SID', 'SMID', 'SDSD_indoor', 'SDSD_outdoor']:
             utils.save_img((os.path.join(result_dir_gt, os.path.splitext(
                 os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(target))
 else:
-    if dataset == 'LOL_v1':
-        input_dir = 'data/LOLv1/Test/input/'
-        target_dir = 'data/LOLv1/Test/target/'
 
-    if dataset == 'LOL_v2_real':
-        input_dir = 'data/LOLv2/Real_captured/Test/Low/'
-        target_dir = 'data/LOLv2/Real_captured/Test/Normal/'
-    
-    if dataset == 'LOL_v2_synthetic':
-        input_dir = 'data/LOLv2/Synthetic/Test/Low/'
-        target_dir = 'data/LOLv2/Synthetic/Test/Normal/'
-    
+    input_dir = opt['datasets']['val']['dataroot_lq']
+    target_dir = opt['datasets']['val']['dataroot_gt']
     print(input_dir)
     print(target_dir)
 

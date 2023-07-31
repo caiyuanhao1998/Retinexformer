@@ -29,7 +29,7 @@ from pdb import set_trace as stx
 def parse_options(is_train=True):
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--opt', type=str, default='Options/MST++/MST_plus_plus_Lolv2_synthetic_1x8_debug.yml', help='Path to option YAML file.')
+        '--opt', type=str, default='Options/RetinexFormer_LOL_v2_real.yml', help='Path to option YAML file.')
     parser.add_argument('--gpu_id', type=str, default="0", help='GPU devices.')
 
     parser.add_argument(
@@ -42,7 +42,7 @@ def parse_options(is_train=True):
     opt = parse(args.opt, is_train=is_train)
 
     # 指定gpu
-    gpu_list = ','.join(str(x) for x in args.gpus)
+    gpu_list = ','.join(str(x) for x in args.gpu_id)
     os.environ['CUDA_VISIBLE_DEVICES'] = gpu_list
     print('export CUDA_VISIBLE_DEVICES=' + gpu_list)
     import torch
