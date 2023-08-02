@@ -32,10 +32,10 @@ parser.add_argument('--input_dir', default='./Enhancement/Datasets',
 parser.add_argument('--result_dir', default='./results/',
                     type=str, help='Directory for results')
 parser.add_argument(
-    '--opt', type=str, default='Options/RetinexFormer_SMID.yml', help='Path to option YAML file.')
-parser.add_argument('--weights', default='pretrained_weights/SMID.pth',
+    '--opt', type=str, default='Options/RetinexFormer_SDSD_indoor.yml', help='Path to option YAML file.')
+parser.add_argument('--weights', default='pretrained_weights/SDSD_indoor.pth',
                     type=str, help='Path to weights')
-parser.add_argument('--dataset', default='SMID', type=str,
+parser.add_argument('--dataset', default='SDSD_indoor', type=str,
                     help='Test Dataset') 
 parser.add_argument('--gpus', type=str, default="0", help='GPU devices.')
 
@@ -141,11 +141,15 @@ if dataset in ['SID', 'SMID', 'SDSD_indoor', 'SDSD_outdoor']:
             psnr.append(utils.PSNR(target, restored))
             ssim.append(utils.calculate_ssim(
                 img_as_ubyte(target), img_as_ubyte(restored)))
-            utils.save_img((os.path.join(result_dir, os.path.splitext(
+            type_id = os.path.dirname(inp_path).split('/')[-1]
+            os.makedirs(os.path.join(result_dir, type_id), exist_ok=True)
+            os.makedirs(os.path.join(result_dir_input, type_id), exist_ok=True)
+            os.makedirs(os.path.join(result_dir_gt, type_id), exist_ok=True)
+            utils.save_img((os.path.join(result_dir, type_id, os.path.splitext(
                 os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(restored))
-            utils.save_img((os.path.join(result_dir_input, os.path.splitext(
+            utils.save_img((os.path.join(result_dir_input, type_id, os.path.splitext(
                 os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(input_save))
-            utils.save_img((os.path.join(result_dir_gt, os.path.splitext(
+            utils.save_img((os.path.join(result_dir_gt, type_id, os.path.splitext(
                 os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(target))
 else:
 
