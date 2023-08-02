@@ -9,7 +9,29 @@
 ![pipeline](/figure/pipeline.png)
 
 #### News
-- **2023.07.14 :** Our paper has been accepted by ICCV 2023, code and models will released. :rocket: 
+- **2023.07.14 :** Our paper has been accepted by ICCV 2023, code and models will released. :rocket:
+
+#### Results
+- Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or Google Drive
+- Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) of Google Drive
+
+<details close>
+<summary><b>Performance on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, and SDSD-out:</b></summary>
+
+* ![results1](/figure/seven_results.png)
+
+
+<details close>
+<summary><b>Performance on MIT Adobe FiveK:</b></summary>
+
+* ![results2](/figure/fivek_results.png)
+
+
+<details close>
+<summary><b>Performance on LIME, NPE, MEF, DICM, and VV:</b></summary>
+
+* ![results1](/figure/visual_compare_no_gt.png)
+
 
 
 
@@ -228,17 +250,12 @@ Then orgnize these datasets as follows:
 
 ```
 
-Besides, we also provide the download links (code: `cyh2`) for the five datasets that have no ground truth:
+Besides, we also provide the download links for the five datasets LIME, NPE, MEF, DICM, and VV that have no ground truth:
 
-DICM: [Baidu Disk](https://pan.baidu.com/s/1OUFd-JnSOvl6s_8hfKeF9w?pwd=cyh2) or Google Drive
+[Baidu Disk](https://pan.baidu.com/s/1oHg03tOfWWLp4q1R6rlzww?pwd=cyh2) (code: `cyh2`)
 
-VV: [Baidu Disk](https://pan.baidu.com/s/1u6_rUCRZb4FZ1BfkKjDYZg?pwd=cyh2) or Google Drive
+[Google Drive]()
 
-LIME: [Baidu Disk](https://pan.baidu.com/s/1yjiRBb_nT0N14glDCWRl8w?pwd=cyh2) or Google Drive
-
-NPE: [Baidu Disk](https://pan.baidu.com/s/1HqqCVZCdNAk7oC-U77KleA?pwd=cyh2) or Google Drive
-
-MEF: [Baidu Disk](https://pan.baidu.com/s/1oqi0qh7gwyZUh-CCm6Hkew?pwd=cyh2) or Google Drive
                     
 
 
@@ -301,6 +318,8 @@ python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 # FiveK
 python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ```
+
+
 
 
 ## 5. Citation
