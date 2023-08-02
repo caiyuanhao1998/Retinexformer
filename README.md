@@ -20,6 +20,7 @@
 
 * ![results1](/figure/seven_results.png)
 
+
 </details>
 
 
@@ -28,6 +29,7 @@
 
 * ![results2](/figure/fivek_results.png)
 
+
 </details>
 
 
@@ -35,6 +37,7 @@
 <summary><b>Performance on LIME, NPE, MEF, DICM, and VV:</b></summary>
 
 * ![results1](/figure/visual_compare_no_gt.png)
+
 
 </details>
 
