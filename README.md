@@ -20,17 +20,23 @@
 
 * ![results1](/figure/seven_results.png)
 
+</details>
+
 
 <details close>
 <summary><b>Performance on MIT Adobe FiveK:</b></summary>
 
 * ![results2](/figure/fivek_results.png)
 
+</details>
+
 
 <details close>
 <summary><b>Performance on LIME, NPE, MEF, DICM, and VV:</b></summary>
 
 * ![results1](/figure/visual_compare_no_gt.png)
+
+</details>
 
 
 
