@@ -228,7 +228,7 @@ Then orgnize these datasets as follows:
 
 ```
 
-Besides, we also provide the download links for the five datasets that have no ground truth:
+Besides, we also provide the download links (code: `cyh2`) for the five datasets that have no ground truth:
 
 DICM: [Baidu Disk](https://pan.baidu.com/s/1OUFd-JnSOvl6s_8hfKeF9w?pwd=cyh2) or Google Drive
 
