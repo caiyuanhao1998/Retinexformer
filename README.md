@@ -18,7 +18,7 @@
 <details close>
 <summary><b>Performance on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, and SDSD-out:</b></summary>
 
-* ![results1](/figure/seven_results.png)
+![results1](/figure/seven_results.png)
 
 
 </details>
@@ -27,7 +27,7 @@
 <details close>
 <summary><b>Performance on MIT Adobe FiveK:</b></summary>
 
-* ![results2](/figure/fivek_results.png)
+![results2](/figure/fivek_results.png)
 
 
 </details>
@@ -36,7 +36,7 @@
 <details close>
 <summary><b>Performance on LIME, NPE, MEF, DICM, and VV:</b></summary>
 
-* ![results1](/figure/visual_compare_no_gt.png)
+![results1](/figure/visual_compare_no_gt.png)
 
 
 </details>
