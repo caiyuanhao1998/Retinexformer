@@ -9,7 +9,7 @@
 ![pipeline](/figure/pipeline.png)
 
 ### News
-- **2023.07.14 :** Our paper has been accepted by ICCV 2023, code and models will released. :rocket:
+- **2023.07.14 :** Our paper has been accepted by ICCV 2023. Code and Models will be released. :rocket:
 
 ### Results
 - Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1UCpHh3MkV4bxzWgiiULnb3BOPWS_8crP?usp=drive_link)
