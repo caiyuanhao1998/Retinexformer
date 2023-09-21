@@ -9,6 +9,7 @@
 ![pipeline](/figure/pipeline.png)
 
 ### News
+- **2023.09.20 :** Code, models, results, and training logs have been released. Feel free to use them. ⭐
 - **2023.07.14 :** Our paper has been accepted by ICCV 2023. Code and Models will be released. :rocket:
 
 ### Results
