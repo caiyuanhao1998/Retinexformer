@@ -18,7 +18,6 @@
 
 &nbsp;
 
-![pipeline](/figure/pipeline.png)
 
 ### News
 - **2023.09.20 :** Code, models, results, and training logs have been released. Feel free to use them. ⭐
@@ -99,7 +98,8 @@ MIT-Adobe FiveK [Baidu Disk](https://pan.baidu.com/s/1ajax7N9JmttTwY84-8URxA?pwd
 
 Please process the MIT Adobe FiveK dataset following [the sRGB setting](https://github.com/nothinglo/Deep-Photo-Enhancer/issues/38)
 
-Then orgnize these datasets as follows:
+<details close>
+<summary><b> Then organize these datasets as follows: </b></summary>
 
 ```
     |--data   
@@ -275,6 +275,8 @@ Then orgnize these datasets as follows:
     |    |    |    |     ...
 
 ```
+
+</details>
 
 We also provide download links for LIME, NPE, MEF, DICM, and VV datasets that have no ground truth:
 
