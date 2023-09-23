@@ -12,7 +12,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/photo-retouching-on-mit-adobe-5k)](https://paperswithcode.com/sota/photo-retouching-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
 
 
-<h2> Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement </h2> 
+<h3> Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement </h3> 
 
 </div>
 
