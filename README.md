@@ -15,8 +15,6 @@
 
 &nbsp;
 
-----
-
 &nbsp;
 
 ![pipeline](/figure/pipeline.png)
