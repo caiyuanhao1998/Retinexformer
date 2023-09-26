@@ -7,11 +7,31 @@
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2303.06705)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎-179bd3)](https://zhuanlan.zhihu.com/p/657927878)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sdsd-indoor)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sdsd-indoor?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sdsd-outdoor)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sdsd-outdoor?p=retinexformer-one-stage-retinex-based)
+
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-dicm)](https://paperswithcode.com/sota/low-light-image-enhancement-on-dicm?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lime)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lime?p=retinexformer-one-stage-retinex-based)
+
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-smid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-smid?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sid?p=retinexformer-one-stage-retinex-based)
+
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-mef)](https://paperswithcode.com/sota/low-light-image-enhancement-on-mef?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-npe)](https://paperswithcode.com/sota/low-light-image-enhancement-on-npe?p=retinexformer-one-stage-retinex-based)
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sid?p=retinexformer-one-stage-retinex-based)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-sid)](https://paperswithcode.com/sota/low-light-image-enhancement-on-sid?p=retinexformer-one-stage-retinex-based)
 
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/image-enhancement-on-mit-adobe-5k)](https://paperswithcode.com/sota/image-enhancement-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-vv)](https://paperswithcode.com/sota/low-light-image-enhancement-on-vv?p=retinexformer-one-stage-retinex-based)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lol-v2)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol-v2?p=retinexformer-one-stage-retinex-based)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lol)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol?p=retinexformer-one-stage-retinex-based)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/photo-retouching-on-mit-adobe-5k)](https://paperswithcode.com/sota/photo-retouching-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
+
 
 </div>
 
