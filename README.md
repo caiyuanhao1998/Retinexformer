@@ -40,12 +40,17 @@
 
 
 ### News
+- **2023.09.20 :** Some results on ExDark nighttime object detection are released.
 - **2023.09.20 :** Code, models, results, and training logs have been released. Feel free to use them. ⭐
 - **2023.07.14 :** Our paper has been accepted by ICCV 2023. Code and Models will be released. :rocket:
 
 ### Results
 - Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1UCpHh3MkV4bxzWgiiULnb3BOPWS_8crP?usp=drive_link)
+
 - Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1rWa_WRX5bqlW2HnBNMUGFKWrou7gIQpO?usp=drive_link)
+
+- Results on ExDark nighttime object detection can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1nZQnwKkGvswv--JunzgBLTXVRlOdcxb6?usp=sharing)
+
 
 <details close>
 <summary><b>Performance on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, and SDSD-out:</b></summary>
@@ -68,7 +73,16 @@
 <details close>
 <summary><b>Performance on LIME, NPE, MEF, DICM, and VV:</b></summary>
 
-![results1](/figure/visual_compare_no_gt.png)
+![results3](/figure/visual_compare_no_gt.png)
+
+
+</details>
+
+
+<details close>
+<summary><b>Performance on ExDark Nighttime object detection:</b></summary>
+
+![results4](/figure/exdark_results.png)
 
 
 </details>
