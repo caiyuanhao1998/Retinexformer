@@ -71,6 +71,10 @@ model_restoration = create_model(opt).net_g
 
 # 加载模型
 checkpoint = torch.load(weights)
+
+for k in checkpoint['params']:
+    checkpoint['params'][k.replace('.module', '')] = checkpoint['params'][k]
+
 model_restoration.load_state_dict(checkpoint['params'])
 print("===>Testing using weights: ", weights)
 model_restoration.cuda()
