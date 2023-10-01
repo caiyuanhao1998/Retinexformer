@@ -91,7 +91,7 @@
 &nbsp;
 
 
-## 1. Create Envirement
+## 1. Create Environment
 
 - Make Conda Environment
 ```
