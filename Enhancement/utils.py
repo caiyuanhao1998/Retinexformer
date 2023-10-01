@@ -1,7 +1,8 @@
-# Learning Enriched Features for Fast Image Restoration and Enhancement
-# Syed Waqas Zamir, Aditya Arora, Salman Khan, Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang, and Ling Shao
-# IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)
-# https://www.waqaszamir.com/publication/zamir-2022-mirnetv2/
+# Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement
+# Yuanhao Cai, Hao Bian, Jing Lin, Haoqian Wang, Radu Timofte, Yulun Zhang
+# International Conference on Computer Vision (ICCV), 2023
+# https://arxiv.org/abs/2303.06705
+# https://github.com/caiyuanhao1998/Retinexformer
 
 import numpy as np
 import os
