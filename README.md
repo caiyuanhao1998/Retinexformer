@@ -397,6 +397,15 @@ python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ## 5. Citation
 
 ```shell
+@InProceedings{Cai_2023_ICCV,
+    author    = {Cai, Yuanhao and Bian, Hao and Lin, Jing and Wang, Haoqian and Timofte, Radu and Zhang, Yulun},
+    title     = {Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {12504-12513}
+}
+
 @inproceedings{retinexformer,
   title={Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement},
   author={Yuanhao Cai and Hao Bian and Jing Lin and Haoqian Wang and Radu Timofte and Yulun Zhang},
