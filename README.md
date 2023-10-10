@@ -40,7 +40,7 @@
 
 
 ### News
-- **2023.10.06 :** Retinexformer is added to the [low-level-vision-paper-record](https://github.com/lcybuzz/Low-Level-Vision-Paper-Record) collection. ⭐
+- **2023.10.10 :** Retinexformer is added to the [low-level-vision-paper-record](https://github.com/lcybuzz/Low-Level-Vision-Paper-Record) collection. ⭐
 - **2023.10.06 :** Retinexformer is added to the [awesome-low-light-image-enhancement](https://github.com/dawnlh/awesome-low-light-image-enhancement) collection. :tada:
 - **2023.09.20 :** Some results on ExDark nighttime object detection are released.
 - **2023.09.20 :** Code, models, results, and training logs have been released. Feel free to use them. ⭐
