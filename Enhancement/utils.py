@@ -122,3 +122,12 @@ def visualization(feature, save_path, type='max', colormap=cv2.COLORMAP_JET):
     color_feat = cv2.applyColorMap(normed_feat, colormap)
     # stx()
     cv2.imwrite(save_path, color_feat)
+
+def my_summary(test_model, H = 256, W = 256, C = 3, N = 1):
+    model = test_model.cuda()
+    print(model)
+    inputs = torch.randn((N, C, H, W)).cuda()
+    flops = FlopCountAnalysis(model,inputs)
+    n_param = sum([p.nelement() for p in model.parameters()])
+    print(f'GMac:{flops.total()/(1024*1024*1024)}')
+    print(f'Params:{n_param}')

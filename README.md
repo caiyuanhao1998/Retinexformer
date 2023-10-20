@@ -40,6 +40,7 @@
 
 
 ### News
+- **2022.10.20 :** We have provided Params and FLOPS evaluating function in `Enhancement/utils.py`. Feel free to check and use them.
 - **2023.10.12 :** Retinexformer is added to the [ICCV-2023-paper](https://github.com/DmitryRyumin/ICCV-2023-Papers#low-level-and-physics-based-vision) collection. 🚀
 - **2023.10.10 :** Retinexformer is added to the [low-level-vision-paper-record](https://github.com/lcybuzz/Low-Level-Vision-Paper-Record) collection. ⭐
 - **2023.10.06 :** Retinexformer is added to the [awesome-low-light-image-enhancement](https://github.com/dawnlh/awesome-low-light-image-enhancement) collection. :tada:
@@ -360,6 +361,16 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoo
 # FiveK
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
 ```
+
+
+- #### Evaluating the Params and FLOPS of models
+We have provided a function `my_summary()` in `Enhancement/utils.py`, please use this function to evaluate the parameters and computational complexity of the models, especially the Transformers as
+
+```shell
+from utils import my_summary
+my_summary(RetinexFormer(), 256, 256, 3, 1)
+```
+
 
 &nbsp;
 
