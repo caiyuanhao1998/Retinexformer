@@ -40,7 +40,8 @@
 
 
 ### News
-- **2022.10.20 :** Params and FLOPS evaluating function is provided. Feel free to check and use them.
+- **2022.11.2 :** Retinexformer is added to the [Awesome-Transformer-Attention](https://github.com/cmhungsteve/Awesome-Transformer-Attention/blob/main/README_2.md#image-restoration) collection. 💫
+- **2022.10.20 :** Params and FLOPS evaluating function is provided. Feel free to check and use it.
 - **2023.10.12 :** Retinexformer is added to the [ICCV-2023-paper](https://github.com/DmitryRyumin/ICCV-2023-Papers#low-level-and-physics-based-vision) collection. 🚀
 - **2023.10.10 :** Retinexformer is added to the [low-level-vision-paper-record](https://github.com/lcybuzz/Low-Level-Vision-Paper-Record) collection. ⭐
 - **2023.10.06 :** Retinexformer is added to the [awesome-low-light-image-enhancement](https://github.com/dawnlh/awesome-low-light-image-enhancement) collection. :tada:
