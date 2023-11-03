@@ -40,6 +40,7 @@
 
 
 ### News
+- **2023.11.03 :** The same test setting as KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please check the `Testing` part for details.
 - **2023.11.02 :** Retinexformer is added to the [Awesome-Transformer-Attention](https://github.com/cmhungsteve/Awesome-Transformer-Attention/blob/main/README_2.md#image-restoration) collection. 💫
 - **2023.10.20 :** Params and FLOPS evaluating function is provided. Feel free to check and use it.
 - **2023.10.12 :** Retinexformer is added to the [ICCV-2023-paper](https://github.com/DmitryRyumin/ICCV-2023-Papers#low-level-and-physics-based-vision) collection. 🚀
@@ -52,6 +53,8 @@
 ### Results
 - Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1UCpHh3MkV4bxzWgiiULnb3BOPWS_8crP?usp=drive_link)
 
+- Results on LOL-v1, LOL-v2-real, and LOL-v2-synthetic datasets with the same test setting as KinD, LLFlow, and recente diffusion models can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1Kbq9pASf1O_0Y9QMc88obQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1_ugNFblIYOCIam4cVJiXVX1aBGEYhn1o?usp=drive_link).
+
 - Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1rWa_WRX5bqlW2HnBNMUGFKWrou7gIQpO?usp=drive_link)
 
 - Results on ExDark nighttime object detection can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1ZvoPzYQePRc80-o7rrJuRQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1nZQnwKkGvswv--JunzgBLTXVRlOdcxb6?usp=sharing). Please use [this repo](https://github.com/cuiziteng/Illumination-Adaptive-Transformer/tree/main/IAT_high/IAT_mmdetection) to run experiments on the ExDark dataset
@@ -62,6 +65,18 @@
 
 ![results1](/figure/seven_results.png)
 
+
+</details>
+
+<details close>
+<summary><b>Performance on LOL-v1, LOL-v2-real, and LOL-v2-synthetic with the same test setting as KinD, LLFlow, and recent diffusion models:</b></summary>
+
+|  Metric  |   LOL-v1    |  LOL-v2-real  |  LOL-v2-synthetic  |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| PSNR | 27.18 | 27.71 | 29.04 |
+| SSIM | 0.850 | 0.856 | 0.939 |
+
+Please note that we do not suggest this test setting because it uses the mean of the ground truth to obtain better results. But, if you want to follow KinD, LLFlow, and recent diffusion-based works, it is your choice to use this test setting. Please refer to the `Testing` part for details.
 
 </details>
 
@@ -361,6 +376,21 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoo
 
 # FiveK
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
+```
+
+
+- #### The same test setting as LLFlow, KinD, and recent diffusion models
+We provide the same test setting as LLFlow, KinD, and recent diffusion models. Please note that we do not suggest this test setting because it uses the mean of ground truth to enhance the output of the model. But if you want to follow these works and make a fair comparison, just add a `--GT_mean` action at the end of the aboved test command as
+
+```shell
+# LOL-v1
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v1.yml --weights pretrained_weights/LOL_v1.pth --dataset LOL_v1 --GT_mean
+
+# LOL-v2-real
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_real.yml --weights pretrained_weights/LOL_v2_real.pth --dataset LOL_v2_real --GT_mean
+
+# LOL-v2-synthetic
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_synthetic.yml --weights pretrained_weights/LOL_v2_synthetic.pth --dataset LOL_v2_synthetic --GT_mean
 ```
 
 

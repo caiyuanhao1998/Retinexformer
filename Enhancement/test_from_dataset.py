@@ -9,6 +9,7 @@ import numpy as np
 import os
 import argparse
 from tqdm import tqdm
+import cv2
 
 import torch.nn as nn
 import torch
@@ -39,6 +40,7 @@ parser.add_argument('--weights', default='pretrained_weights/SDSD_indoor.pth',
 parser.add_argument('--dataset', default='SDSD_indoor', type=str,
                     help='Test Dataset') 
 parser.add_argument('--gpus', type=str, default="0", help='GPU devices.')
+parser.add_argument('--GT_mean', action='store_true', help='Use the mean of GT to rectify the output of the model')
 
 args = parser.parse_args()
 
@@ -147,6 +149,13 @@ if dataset in ['SID', 'SMID', 'SDSD_indoor', 'SDSD_outdoor']:
             restored = torch.clamp(restored, 0, 1).cpu(
             ).detach().permute(0, 2, 3, 1).squeeze(0).numpy()
 
+            if args.GT_mean:
+                # This test setting is the same as KinD, LLFlow, and recent diffusion models
+                # Please refer to Line 73 (https://github.com/zhangyhuaee/KinD/blob/master/evaluate_LOLdataset.py)
+                mean_restored = cv2.cvtColor(restored.astype(np.float32), cv2.COLOR_BGR2GRAY).mean()
+                mean_target = cv2.cvtColor(target.astype(np.float32), cv2.COLOR_BGR2GRAY).mean()
+                restored = np.clip(restored * (mean_target / mean_restored), 0, 1)
+
             psnr.append(utils.PSNR(target, restored))
             ssim.append(utils.calculate_ssim(
                 img_as_ubyte(target), img_as_ubyte(restored)))
@@ -200,6 +209,13 @@ else:
 
             restored = torch.clamp(restored, 0, 1).cpu(
             ).detach().permute(0, 2, 3, 1).squeeze(0).numpy()
+
+            if args.GT_mean:
+                # This test setting is the same as KinD, LLFlow, and recent diffusion models
+                # Please refer to Line 73 (https://github.com/zhangyhuaee/KinD/blob/master/evaluate_LOLdataset.py)
+                mean_restored = cv2.cvtColor(restored.astype(np.float32), cv2.COLOR_BGR2GRAY).mean()
+                mean_target = cv2.cvtColor(target.astype(np.float32), cv2.COLOR_BGR2GRAY).mean()
+                restored = np.clip(restored * (mean_target / mean_restored), 0, 1)
 
             psnr.append(utils.PSNR(target, restored))
             ssim.append(utils.calculate_ssim(
