@@ -40,7 +40,7 @@
 
 
 ### News
-- **2023.11.03 :** The same test setting as KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please check the `Testing` part for details.
+- **2023.11.03 :** The same test setting as KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please check the `Testing` part for more details.
 - **2023.11.02 :** Retinexformer is added to the [Awesome-Transformer-Attention](https://github.com/cmhungsteve/Awesome-Transformer-Attention/blob/main/README_2.md#image-restoration) collection. 💫
 - **2023.10.20 :** Params and FLOPS evaluating function is provided. Feel free to check and use it.
 - **2023.10.12 :** Retinexformer is added to the [ICCV-2023-paper](https://github.com/DmitryRyumin/ICCV-2023-Papers#low-level-and-physics-based-vision) collection. 🚀
@@ -380,7 +380,7 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 
 
 - #### The same test setting as LLFlow, KinD, and recent diffusion models
-We provide the same test setting as LLFlow, KinD, and recent diffusion models. Please note that we do not suggest this test setting because it uses the mean of ground truth to enhance the output of the model. But if you want to follow these works and make a fair comparison, just add a `--GT_mean` action at the end of the aboved test command as
+We provide the same test setting as LLFlow, KinD, and recent diffusion models. Please note that we do not suggest this test setting because it uses the mean of ground truth to enhance the output of the model. But if you want to follow this test setting, just add a `--GT_mean` action at the end of the above test command as
 
 ```shell
 # LOL-v1
