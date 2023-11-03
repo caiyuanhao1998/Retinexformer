@@ -69,7 +69,7 @@
 </details>
 
 <details close>
-<summary><b>Performance on LOL-v1, LOL-v2-real, and LOL-v2-synthetic with the same test setting as KinD, LLFlow, and recent diffusion models:</b></summary>
+<summary><b>Performance on LOL with the same test setting as KinD, LLFlow, and diffusion models:</b></summary>
 
 |  Metric  |   LOL-v1    |  LOL-v2-real  |  LOL-v2-synthetic  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
