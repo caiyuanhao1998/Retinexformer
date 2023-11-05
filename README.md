@@ -53,7 +53,7 @@
 ### Results
 - Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1UCpHh3MkV4bxzWgiiULnb3BOPWS_8crP?usp=drive_link)
 
-- Results on LOL-v1, LOL-v2-real, and LOL-v2-synthetic datasets with the same test setting as KinD, LLFlow, and recente diffusion models can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1Kbq9pASf1O_0Y9QMc88obQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1_ugNFblIYOCIam4cVJiXVX1aBGEYhn1o?usp=drive_link).
+- Results on LOL-v1, LOL-v2-real, and LOL-v2-synthetic datasets with the same test setting as KinD, LLFlow, and recent diffusion models can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1Kbq9pASf1O_0Y9QMc88obQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1_ugNFblIYOCIam4cVJiXVX1aBGEYhn1o?usp=drive_link).
 
 - Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1rWa_WRX5bqlW2HnBNMUGFKWrou7gIQpO?usp=drive_link)
 
