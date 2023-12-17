@@ -40,7 +40,7 @@
 
 
 ### News
-- **2023.11.03 :** The same test setting as KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please check the `Testing` part for more details.
+- **2023.11.03 :** The same test setting as KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please note that we do not suggest this test setting because it uses the mean of the ground truth to obtain better results. But, if you want to follow KinD, LLFlow, and recent diffusion-based works, it is your choice to use this test setting. Please refer to the `Testing` part for details.
 - **2023.11.02 :** Retinexformer is added to the [Awesome-Transformer-Attention](https://github.com/cmhungsteve/Awesome-Transformer-Attention/blob/main/README_2.md#image-restoration) collection. 💫
 - **2023.10.20 :** Params and FLOPS evaluating function is provided. Feel free to check and use it.
 - **2023.10.12 :** Retinexformer is added to the [ICCV-2023-paper](https://github.com/DmitryRyumin/ICCV-2023-Papers#low-level-and-physics-based-vision) collection. 🚀
