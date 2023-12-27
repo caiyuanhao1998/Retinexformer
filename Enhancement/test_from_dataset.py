@@ -27,7 +27,7 @@ from basicsr.models import create_model
 from basicsr.utils.options import dict2str, parse
 
 parser = argparse.ArgumentParser(
-    description='Image Enhancement using MIRNet-v2')
+    description='Image Enhancement using Retinexformer')
 
 parser.add_argument('--input_dir', default='./Enhancement/Datasets',
                     type=str, help='Directory of validation images')
