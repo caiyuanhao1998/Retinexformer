@@ -464,5 +464,3 @@ python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 }
 ```
 
-**Acknowledgment:** Our code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
-
