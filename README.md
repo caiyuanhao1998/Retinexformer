@@ -532,7 +532,7 @@ python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ```
 
-Train our Retinexformer and MST++ with pytorch distributed data parallel (DDP). Please note that we use the mix-precision strategy in the training process, which is controled by the bool hyperparameter `use_amp`  in the config file.
+Train Retinexformer and MST++ with pytorch distributed data parallel (DDP). Please note that we use the mix-precision strategy in the training process, which is controled by the bool hyperparameter `use_amp`  in the config file.
 
 ```shell
 # activate the enviroment
