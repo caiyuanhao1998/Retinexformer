@@ -26,6 +26,30 @@ from skimage import metrics
 from basicsr.models import create_model
 from basicsr.utils.options import dict2str, parse
 
+def self_ensemble(x, model):
+    def forward_transformed(x, hflip, vflip, rotate, model):
+        if hflip:
+            x = torch.flip(x, (-2,))
+        if vflip:
+            x = torch.flip(x, (-1,))
+        if rotate:
+            x = torch.rot90(x, dims=(-2, -1))
+        x = model(x)
+        if rotate:
+            x = torch.rot90(x, dims=(-2, -1), k=3)
+        if vflip:
+            x = torch.flip(x, (-1,))
+        if hflip:
+            x = torch.flip(x, (-2,))
+        return x
+    t = []
+    for hflip in [False, True]:
+        for vflip in [False, True]:
+            for rot in [False, True]:
+                t.append(forward_transformed(x, hflip, vflip, rot, model))
+    t = torch.stack(t)
+    return torch.mean(t, dim=0)
+
 parser = argparse.ArgumentParser(
     description='Image Enhancement using Retinexformer')
 
@@ -33,6 +57,8 @@ parser.add_argument('--input_dir', default='./Enhancement/Datasets',
                     type=str, help='Directory of validation images')
 parser.add_argument('--result_dir', default='./results/',
                     type=str, help='Directory for results')
+parser.add_argument('--output_dir', default='',
+                    type=str, help='Directory for output')
 parser.add_argument(
     '--opt', type=str, default='Options/RetinexFormer_SDSD_indoor.yml', help='Path to option YAML file.')
 parser.add_argument('--weights', default='pretrained_weights/SDSD_indoor.pth',
@@ -41,6 +67,7 @@ parser.add_argument('--dataset', default='SDSD_indoor', type=str,
                     help='Test Dataset') 
 parser.add_argument('--gpus', type=str, default="0", help='GPU devices.')
 parser.add_argument('--GT_mean', action='store_true', help='Use the mean of GT to rectify the output of the model')
+parser.add_argument('--self_ensemble', action='store_true', help='Use self-ensemble to obtain better results')
 
 args = parser.parse_args()
 
@@ -96,8 +123,11 @@ checkpoint_name = os.path.basename(args.weights).split('.')[0]
 result_dir = os.path.join(args.result_dir, dataset, config, checkpoint_name)
 result_dir_input = os.path.join(args.result_dir, dataset, 'input')
 result_dir_gt = os.path.join(args.result_dir, dataset, 'gt')
+output_dir = args.output_dir
 # stx()
 os.makedirs(result_dir, exist_ok=True)
+if args.output_dir != '':
+    os.makedirs(output_dir, exist_ok=True)
 
 psnr = []
 ssim = []
@@ -141,7 +171,10 @@ if dataset in ['SID', 'SMID', 'SDSD_indoor', 'SDSD_outdoor']:
             padw = W - w if w % factor != 0 else 0
             input_ = F.pad(input_, (0, padw, 0, padh), 'reflect')
 
-            restored = model_restoration(input_)
+            if args.self_ensemble:
+                restored = self_ensemble(input_, model_restoration)
+            else:
+                restored = model_restoration(input_)
 
             # Unpad images to original dimensions
             restored = restored[:, :, :h, :w]
@@ -195,14 +228,31 @@ else:
             input_ = img.unsqueeze(0).cuda()
 
             # Padding in case images are not multiples of 4
-            h, w = input_.shape[2], input_.shape[3]
+            b, c, h, w = input_.shape
             H, W = ((h + factor) // factor) * \
                 factor, ((w + factor) // factor) * factor
             padh = H - h if h % factor != 0 else 0
             padw = W - w if w % factor != 0 else 0
             input_ = F.pad(input_, (0, padw, 0, padh), 'reflect')
 
-            restored = model_restoration(input_)
+            if h < 3000 and w < 3000:
+                if args.self_ensemble:
+                    restored = self_ensemble(input_, model_restoration)
+                else:
+                    restored = model_restoration(input_)
+            else:
+                # split and test
+                input_1 = input_[:, :, :, 1::2]
+                input_2 = input_[:, :, :, 0::2]
+                if args.self_ensemble:
+                    restored_1 = self_ensemble(input_1, model_restoration)
+                    restored_2 = self_ensemble(input_2, model_restoration)
+                else:
+                    restored_1 = model_restoration(input_1, model_restoration)
+                    restored_2 = model_restoration(input_2, model_restoration)
+                restored = torch.zeros_like(input_)
+                restored[:, :, :, 1::2] = restored_1
+                restored[:, :, :, 0::2] = restored_2
 
             # Unpad images to original dimensions
             restored = restored[:, :, :h, :w]
@@ -220,8 +270,12 @@ else:
             psnr.append(utils.PSNR(target, restored))
             ssim.append(utils.calculate_ssim(
                 img_as_ubyte(target), img_as_ubyte(restored)))
-            utils.save_img((os.path.join(result_dir, os.path.splitext(
-                os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(restored))
+            if output_dir != '':
+                utils.save_img((os.path.join(output_dir, os.path.splitext(
+                    os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(restored))
+            else:
+                utils.save_img((os.path.join(result_dir, os.path.splitext(
+                    os.path.split(inp_path)[-1])[0] + '.png')), img_as_ubyte(restored))
 
 psnr = np.mean(np.array(psnr))
 ssim = np.mean(np.array(ssim))

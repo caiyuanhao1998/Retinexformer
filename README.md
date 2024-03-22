@@ -5,6 +5,7 @@
 
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2303.06705)
+[![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-179bd3)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎-179bd3)](https://zhuanlan.zhihu.com/p/657927878)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lol-v2-1)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol-v2-1?p=retinexformer-one-stage-retinex-based)
@@ -61,6 +62,8 @@
 
 - Results on LOL-v1, LOL-v2-real, and LOL-v2-synthetic datasets with the same test setting as KinD, LLFlow, and recent diffusion models can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1Kbq9pASf1O_0Y9QMc88obQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1_ugNFblIYOCIam4cVJiXVX1aBGEYhn1o?usp=drive_link).
 
+- Results on the NTIRE 2024 low-light enhancement dataset can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1bzICalpU1RprfnepLsMyCYT569UWTTlV?usp=sharing)
+
 - Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1rWa_WRX5bqlW2HnBNMUGFKWrou7gIQpO?usp=drive_link)
 
 - Results on ExDark nighttime object detection can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1ZvoPzYQePRc80-o7rrJuRQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1nZQnwKkGvswv--JunzgBLTXVRlOdcxb6?usp=sharing). Please use [this repo](https://github.com/cuiziteng/Illumination-Adaptive-Transformer/tree/main/IAT_high/IAT_mmdetection) to run experiments on the ExDark dataset
@@ -83,6 +86,23 @@
 | SSIM | 0.850 | 0.856 | 0.939 |
 
 Please note that we do not suggest this test setting because it uses the mean of the ground truth to obtain better results. But, if you want to follow KinD, LLFlow, and recent diffusion-based works, it is your choice to use this test setting. Please refer to the `Testing` part for details.
+
+</details>
+
+
+</details>
+
+<details close>
+<summary><b>Performance on NTIRE 2024 test-challenge:</b></summary>
+
+|  Method  |   Retinexformer    |  MST++  |  Ensemble  |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| PSNR | 24.61 | 24.59 | 25.30 |
+| SSIM | 0.85 | 0.85 | 0.85 |
+
+Feel free to check the [Codalab leaderboard](https://codalab.lisn.upsaclay.fr/competitions/17640#results). Our method ranks second.
+
+![results_ntire](/figure/ntire_2024.png)
 
 </details>
 
@@ -119,6 +139,10 @@ Please note that we do not suggest this test setting because it uses the mean of
 
 ## 1. Create Environment
 
+We suggest you use pytorch 1.11 to re-implement the results in our ICCV 2023 paper and pytorch 2 to re-implement the results in NTIRE 2024 Challenge because pytorch 2 can save more memory in mix-precision training.
+
+### 1.1 Install the environment with Pytorch 1.11
+
 - Make Conda Environment
 ```
 conda create -n Retinexformer python=3.7
@@ -128,8 +152,32 @@ conda activate Retinexformer
 - Install Dependencies
 ```
 conda install pytorch=1.11 torchvision cudatoolkit=11.3 -c pytorch
+
 pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm tensorboard
+
 pip install einops gdown addict future lmdb numpy pyyaml requests scipy yapf lpips
+```
+
+- Install BasicSR
+```
+python setup.py develop --no_cuda_ext
+```
+
+### 1.2 Install the environment with Pytorch 2
+
+- Make Conda Environment
+```
+conda create -n torch2 python=3.9 -y
+conda activate torch2
+```
+
+- Install Dependencies
+```
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm tensorboard
+
+pip install einops gdown addict future lmdb numpy pyyaml requests scipy yapf lpips thop timm
 ```
 
 - Install BasicSR
@@ -155,6 +203,8 @@ SDSD-indoor [Baidu Disk](https://pan.baidu.com/s/1rfRzshGNcL0MX5soRNuwTA?errmsg=
 SDSD-outdoor [Baidu Disk](https://pan.baidu.com/share/init?surl=JzDQnFov-u6aBPPgjSzSxQ) (code: `uibk`), [Google Drive](https://drive.google.com/drive/folders/14TF0f9YQwZEntry06M93AMd70WH00Mg6)
 
 MIT-Adobe FiveK [Baidu Disk](https://pan.baidu.com/s/1ajax7N9JmttTwY84-8URxA?pwd=cyh2) (code:`cyh2`), [Google Drive](https://drive.google.com/file/d/11HEUmchFXyepI4v3dhjnDnmhW_DgwfRR/view?usp=sharing), [Official](https://data.csail.mit.edu/graphics/fivek/)
+
+NTIRE 2024 [Baidu Disk](https://pan.baidu.com/s/1Tl-LUhwsPh6XFA2SqR5c8Q?pwd=cyh2) (code:`cyh2`), Google Drive links for [training input](https://drive.google.com/file/d/1Js9yHmV0xAWhT5oJKzfx6oOr_7k5hcNg/view), [training GT](https://drive.google.com/file/d/1PUJgJiEyrIj5TgwcQlFvVGuIe3_PXMLY/view), and [mini-val set](https://drive.google.com/drive/folders/1M-WVWToH1HhMtmQlYrb8qlNCQgi0kG3y?usp=sharing).
 
 **Note:** 
 
@@ -340,6 +390,25 @@ MIT-Adobe FiveK [Baidu Disk](https://pan.baidu.com/s/1ajax7N9JmttTwY84-8URxA?pwd
     |    |    |    |    |--a4574-DSC_0038.jpg
     |    |    |    |    |--a4576-DSC_0217.jpg
     |    |    |    |     ...
+    |    |--NTIRE
+    |    |    |--train
+    |    |    |    |--input
+    |    |    |    |    |--1.png
+    |    |    |    |    |--3.png
+    |    |    |    |     ...
+    |    |    |    |--target
+    |    |    |    |    |--1.png
+    |    |    |    |    |--3.png
+    |    |    |    |     ...
+    |    |    |--minival
+    |    |    |    |--input
+    |    |    |    |    |--1.png
+    |    |    |    |    |--31.png
+    |    |    |    |     ...
+    |    |    |    |--target
+    |    |    |    |    |--1.png
+    |    |    |    |    |--31.png
+    |    |    |    |     ...
 
 ```
 
@@ -359,6 +428,9 @@ We also provide download links for LIME, NPE, MEF, DICM, and VV datasets that ha
 Download our models from [Baidu Disk](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in folder `pretrained_weights`
 
 ```shell
+# activate the environment
+conda activate Retinexformer
+
 # LOL-v1
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v1.yml --weights pretrained_weights/LOL_v1.pth --dataset LOL_v1
 
@@ -382,7 +454,19 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_SDSD_outdoo
 
 # FiveK
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml --weights pretrained_weights/FiveK.pth --dataset FiveK
+
+# NTIRE
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_NTIRE.yml --weights pretrained_weights/NTIRE.pth --dataset NTIRE --self_ensemble
+
+# MST_Plus_Plus trained with 4 GPUs on NTIRE 
+python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_4x1800.yml --weights pretrained_weights/MST_Plus_Plus_4x1800.pth --dataset NTIRE --self_ensemble
+
+# MST_Plus_Plus trained with 8 GPUs on NTIRE 
+python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_8x1150.yml --weights pretrained_weights/MST_Plus_Plus_8x1150.pth --dataset NTIRE --self_ensemble
+
 ```
+
+- `note:` We add the self-ensemble strategy in the testing code to derive better results. Just add a `--self_ensemble` action at the end of the above test command to use it.
 
 
 - #### The same test setting as LLFlow, KinD, and recent diffusion models
