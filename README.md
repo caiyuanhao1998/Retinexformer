@@ -572,5 +572,14 @@ bash train_multigpu.sh Options/ntire/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,
   booktitle={ICCV},
   year={2023}
 }
+
+
+# MST++
+@inproceedings{mst,
+  title={Mask-guided Spectral-wise Transformer for Efficient Hyperspectral Image Reconstruction},
+  author={Yuanhao Cai and Jing Lin and Xiaowan Hu and Haoqian Wang and Xin Yuan and Yulun Zhang and Radu Timofte and Luc Van Gool},
+  booktitle={CVPR},
+  year={2022}
+}
 ```
 
