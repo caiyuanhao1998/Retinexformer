@@ -1,4 +1,3 @@
-
 import argparse
 import datetime
 import logging
@@ -29,9 +28,7 @@ from pdb import set_trace as stx
 def parse_options(is_train=True):
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--opt', type=str, default='Options/MST++/MST_plus_plus_Lolv1_1x8_debug.yml', help='Path to option YAML file.')
-    parser.add_argument('--gpus', type=str, default="2", help='GPU devices.')
-
+        '--opt', type=str, default='Options/ntire/RetinexFormer_ntire_4x2x512.yml', help='Path to option YAML file.')
     parser.add_argument(
         '--launcher',
         choices=['none', 'pytorch', 'slurm'],
@@ -41,11 +38,6 @@ def parse_options(is_train=True):
     args = parser.parse_args()
     opt = parse(args.opt, is_train=is_train)
 
-    # 指定gpu
-    gpu_list = ','.join(str(x) for x in args.gpus)
-    os.environ['CUDA_VISIBLE_DEVICES'] = gpu_list
-    print('export CUDA_VISIBLE_DEVICES=' + gpu_list)
-    import torch
     # distributed settings
     if args.launcher == 'none':
         opt['dist'] = False
@@ -88,27 +80,31 @@ def init_loggers(opt):
     logger.info(dict2str(opt))
 
     # initialize wandb logger before tensorboard logger to allow proper sync:
-    if (opt['logger'].get('wandb')
-            is not None) and (opt['logger']['wandb'].get('project')
-                              is not None) and ('debug' not in opt['name']):
-        assert opt['logger'].get('use_tb_logger') is True, (
-            'should turn on tensorboard when using wandb')
-        init_wandb_logger(opt)
+    # if (opt['logger'].get('wandb')
+    #         is not None) and (opt['logger']['wandb'].get('project')
+    #                           is not None) and ('debug' not in opt['name']):
+    #     assert opt['logger'].get('use_tb_logger') is True, (
+    #         'should turn on tensorboard when using wandb')
+    #     init_wandb_logger(opt)
+
     tb_logger = None
     if opt['logger'].get('use_tb_logger') and 'debug' not in opt['name']:
         tb_logger = init_tb_logger(log_dir=osp.join('tb_logger', opt['name']))
     return logger, tb_logger
 
 
-def create_train_val_dataloader(opt, logger):
+def create_train_val_dataloader(opt, logger):  #train loader 和 val loader 一起构建
     # create train and val dataloaders
     train_loader, val_loader = None, None
     for phase, dataset_opt in opt['datasets'].items():
+        # stx()
         if phase == 'train':
             dataset_enlarge_ratio = dataset_opt.get('dataset_enlarge_ratio', 1)
-            train_set = create_dataset(dataset_opt)
+            train_set = create_dataset(dataset_opt)                                 #将option中的dataset参数传入create_dataset中构建train_set
+            # stx()
             train_sampler = EnlargedSampler(train_set, opt['world_size'],
                                             opt['rank'], dataset_enlarge_ratio)     #缺少关键字 world_size 和 rank，train_sampler是做什么？从get_dist_info得到
+            # stx()
             train_loader = create_dataloader(
                 train_set,
                 dataset_opt,
@@ -116,12 +112,13 @@ def create_train_val_dataloader(opt, logger):
                 dist=opt['dist'],
                 sampler=train_sampler,
                 seed=opt['manual_seed'])
+            # stx()
 
             num_iter_per_epoch = math.ceil(
                 len(train_set) * dataset_enlarge_ratio /
-                (dataset_opt['batch_size_per_gpu'] * opt['world_size']))
+                (dataset_opt['batch_size_per_gpu'] * opt['world_size']))  #一个epoch遍历一次数据
             total_iters = int(opt['train']['total_iter'])
-            total_epochs = math.ceil(total_iters / (num_iter_per_epoch))
+            total_epochs = math.ceil(total_iters / (num_iter_per_epoch)) #一个iteration就是一次 inference + backward，总的iteration是不变的
             logger.info(
                 'Training statistics:'
                 f'\n\tNumber of train images: {len(train_set)}'
@@ -133,6 +130,7 @@ def create_train_val_dataloader(opt, logger):
 
         elif phase == 'val':
             val_set = create_dataset(dataset_opt)
+            # stx()
             val_loader = create_dataloader(
                 val_set,
                 dataset_opt,
@@ -154,7 +152,7 @@ def main():
     opt = parse_options(is_train=True)
 
     torch.backends.cudnn.benchmark = True
-    # torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.deterministic = True
 
     # automatic resume ..
     state_folder_path = 'experiments/{}/training_states/'.format(opt['name']) #状态路径
@@ -195,7 +193,7 @@ def main():
     train_loader, train_sampler, val_loader, total_epochs, total_iters = result
 
     # create model
-
+    # print(resume_state)
     if resume_state:  # resume training
         check_resume(opt, resume_state['iter'])
         model = create_model(opt)
@@ -259,7 +257,7 @@ def main():
         train_sampler.set_epoch(epoch)
         prefetcher.reset()
         train_data = prefetcher.next()
-
+        
         while train_data is not None:
             data_time = time.time() - data_time
 
@@ -319,7 +317,7 @@ def main():
             # save models and training states
             if current_iter % opt['logger']['save_checkpoint_freq'] == 0:
                 logger.info('Saving models and training states.')
-                model.save(epoch, current_iter)
+                model.save(epoch, current_iter, best_metric=best_metric)
 
             # validation
             if opt.get('val') is not None and (current_iter %

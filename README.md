@@ -466,7 +466,8 @@ python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_8x115
 
 ```
 
-- `note:` We add the self-ensemble strategy in the testing code to derive better results. Just add a `--self_ensemble` action at the end of the above test command to use it.
+- #### Self-ensemble testing strategy
+We add the self-ensemble strategy in the testing code to derive better results. Just add a `--self_ensemble` action at the end of the above test command to use it.
 
 
 - #### The same test setting as LLFlow, KinD, and recent diffusion models
@@ -500,7 +501,12 @@ my_summary(RetinexFormer(), 256, 256, 3, 1)
 
 Feel free to check our training logs from [Baidu Disk](https://pan.baidu.com/s/16NtLba_ANe3Vzji-eZ1xAA?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1HU_wEn_95Hakxi_ze-pS6Htikmml5MTA?usp=sharing)
 
+We suggest you use the environment with pytorch 2 to train our model on the NTIRE 2024 dataset and the environment with pytorch 1.11 to train our model on other datasets.
+
 ```shell
+# activate the enviroment
+conda activate Retinexformer
+
 # LOL-v1
 python3 basicsr/train.py --opt Options/RetinexFormer_LOL_v1.yml
 
@@ -525,6 +531,25 @@ python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 # FiveK
 python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ```
+
+Train our Retinexformer and MST++ with pytorch distributed data parallel (DDP) with multi GPUs. Please note that we use the mix-precision strategy in the training process, which is controled by the bool hyperparameter `use_amp`  in the config file.
+
+```shell
+# activate the enviroment
+conda activate torch2
+
+# Retinexformer
+bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_8x2000.yml 0,1,2,3,4,5,6,7 4321
+
+# MST++ with 4 GPUs
+bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
+
+# MST++ with 8 GPUs
+bash train_multigpu.sh Options/ntire/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
+
+```
+
+
 
 &nbsp;
 
