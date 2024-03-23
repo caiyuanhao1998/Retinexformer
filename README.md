@@ -532,20 +532,20 @@ python3 basicsr/train.py --opt Options/RetinexFormer_SDSD_outdoor.yml
 python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 ```
 
-Train Retinexformer and MST++ with distributed data parallel (DDP). Note that we use the mix-precision strategy in the training process, which is controlled by the bool hyperparameter `use_amp`  in the config file.
+Train  our Retinexformer and MST++ with the distributed data parallel (DDP) strategy of pytorch on the NTIRE 2024 Low-Light Enhancement dataset. Please note that we use the mix-precision strategy in the training process, which is controlled by the bool hyperparameter `use_amp`  in the config file.
 
 ```shell
 # activate the enviroment
 conda activate torch2
 
-# Retinexformer
-bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_8x2000.yml 0,1,2,3,4,5,6,7 4321
+# Train Retinexformer with 8 GPUs on NTIRE
+bash train_multigpu.sh Options/RetinexFormer_NTIRE_8x2000.yml 0,1,2,3,4,5,6,7 4321
 
-# MST++ with 4 GPUs
-bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
+# Train MST++ with 4 GPUs on NTIRE
+bash train_multigpu.sh Options/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
 
-# MST++ with 8 GPUs
-bash train_multigpu.sh Options/ntire/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
+# Train MST++ with 8 GPUs on NTIRE
+bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
 
 ```
 

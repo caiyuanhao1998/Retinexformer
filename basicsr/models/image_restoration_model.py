@@ -20,6 +20,12 @@ import cv2
 import torch.nn.functional as F
 from functools import partial
 
+try :
+    from torch.cuda.amp import autocast, GradScaler
+    load_amp = True
+except:
+    load_amp = False
+
 
 class Mixing_Augment:
     def __init__(self, mixup_beta, use_identity, device):
@@ -58,8 +64,15 @@ class ImageCleanModel(BaseModel):
     def __init__(self, opt):
         super(ImageCleanModel, self).__init__(opt)
 
+        # define mixed precision
+        self.use_amp = opt.get('use_amp', False) and load_amp
+        self.amp_scaler = GradScaler(enabled=self.use_amp)
+        if self.use_amp:
+            print('Using Automatic Mixed Precision')
+        else:
+            print('Not using Automatic Mixed Precision')
+                  
         # define network
-
         self.mixing_flag = self.opt['train']['mixing_augs'].get('mixup', False)
         if self.mixing_flag:
             mixup_beta = self.opt['train']['mixing_augs'].get(
@@ -157,24 +170,31 @@ class ImageCleanModel(BaseModel):
 
     def optimize_parameters(self, current_iter):
         self.optimizer_g.zero_grad()
-        preds = self.net_g(self.lq)
-        if not isinstance(preds, list):
-            preds = [preds]
 
-        self.output = preds[-1]
+        with autocast(enabled=self.use_amp):
+            preds = self.net_g(self.lq)
+            if not isinstance(preds, list):
+                preds = [preds]
 
-        loss_dict = OrderedDict()
-        # pixel loss
-        l_pix = 0.
-        for pred in preds:
-            l_pix += self.cri_pix(pred, self.gt) #此处统计batch的loss
+            self.output = preds[-1]
 
-        loss_dict['l_pix'] = l_pix
+            loss_dict = OrderedDict()
+            # pixel loss
+            l_pix = 0.
+            for pred in preds:
+                l_pix += self.cri_pix(pred, self.gt) #此处统计batch的loss
 
-        l_pix.backward()
+            loss_dict['l_pix'] = l_pix
+
+        self.amp_scaler.scale(l_pix).backward()
+        self.amp_scaler.unscale_(self.optimizer_g) # 在梯度裁剪前先unscale梯度
+        # l_pix.backward()
+
         if self.opt['train']['use_grad_clip']:
             torch.nn.utils.clip_grad_norm_(self.net_g.parameters(), 0.01)
-        self.optimizer_g.step()
+        # self.optimizer_g.step()
+        self.amp_scaler.step(self.optimizer_g)
+        self.amp_scaler.update()
 
         self.log_dict = self.reduce_loss_dict(loss_dict)
 
@@ -242,7 +262,6 @@ class ImageCleanModel(BaseModel):
 
         for idx, val_data in enumerate(dataloader):
             img_name = osp.splitext(osp.basename(val_data['lq_path'][0]))[0]
-
             self.feed_data(val_data)
             test()
 

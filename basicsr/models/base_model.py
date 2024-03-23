@@ -331,6 +331,11 @@ class BaseModel():
                 state['optimizers'].append(o.state_dict())
             for s in self.schedulers:
                 state['schedulers'].append(s.state_dict())
+
+            # best metric
+            state['best_metric'] = kwargs['best_metric']
+            if self.opt['is_train'] and self.opt['use_amp']:
+                state['amp_scaler'] = self.amp_scaler.state_dict()
             save_filename = f'{current_iter}.state'
             save_path = os.path.join(self.opt['path']['training_states'],
                                      save_filename)
@@ -352,6 +357,11 @@ class BaseModel():
             self.optimizers[i].load_state_dict(o)
         for i, s in enumerate(resume_schedulers):
             self.schedulers[i].load_state_dict(s)
+
+        # resume amp scaler
+        if self.opt['is_train'] and self.opt.get('use_amp', False):
+            if resume_state.get('amp_scaler', None):
+                self.amp_scaler.load_state_dict(resume_state['amp_scaler'])
 
     def reduce_loss_dict(self, loss_dict):
         """reduce loss dict.
