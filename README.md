@@ -37,7 +37,7 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/image-enhancement-on-mit-adobe-5k)](https://paperswithcode.com/sota/image-enhancement-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
 
-A strong baseline supporting over 15 benchmarks and high-resolution (up to 4000x6000) low-light image enhancement
+A strong baseline supporting over 15 datasets and high-resolution (up to 4000x6000) low-light enhancement
 
 
 </div>
