@@ -44,7 +44,7 @@
 &nbsp;
 
 ### Introduction
-This is A strong baseline for low-light image enhancement. This repo supports over 15 benchmarks and extremely high-resolution (up to 4000x6000) low-light enhancement. If you find this repo useful, please give it a star ⭐ and consider citing our paper in your research. Thank you.
+This is a baseline and toolbox for wide-range low-light image enhancement. This repo supports over 15 benchmarks and extremely high-resolution (up to 4000x6000) low-light enhancement. Our method won the second place in the NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640).  If you find this repo useful, please give it a star ⭐ and consider citing our paper in your research. Thank you.
 
 ### News
 - **2024.03.22 :** We release `distributed data parallel (DDP)` and `mix-precision` training strategies to help you train larger models. We release `self-ensemble` testing strategies to help you derive better results. Plus, we also release an adaptive `split-and-test` strategy for high-resolution up to 4000x6000 low-light image enhancement. Feel free to use them. 🚀
