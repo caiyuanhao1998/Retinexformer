@@ -37,17 +37,17 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/image-enhancement-on-mit-adobe-5k)](https://paperswithcode.com/sota/image-enhancement-on-mit-adobe-5k?p=retinexformer-one-stage-retinex-based)
 
-A strong baseline supporting over 15 datasets and high-resolution (up to 4000x6000) low-light enhancement
-
 
 </div>
 
 
 &nbsp;
 
+### Introduction
+This is A strong baseline for low-light image enhancement. This repo supports over 15 benchmarks and extremely high-resolution (up to 4000x6000) low-light enhancement. If you find this repo useful, please give it a star ⭐ and consider citing our paper in your research. Thank you.
 
 ### News
-- **2024.03.22 :** We release `distributed data parallel (DDP)` and `mix-precision` training strategies to help you train larger models. We release `self-ensemble` testing stratgies to help you derive better results. Plus, we also release a adaptive `split-and-test` strategy for high-resolution up to 4000x6000 low-light image enhancement. Feel free to use them. ⭐
+- **2024.03.22 :** We release `distributed data parallel (DDP)` and `mix-precision` training strategies to help you train larger models. We release `self-ensemble` testing strategies to help you derive better results. Plus, we also release an adaptive `split-and-test` strategy for high-resolution up to 4000x6000 low-light image enhancement. Feel free to use them. 🚀
 - **2024.03.21 :** Our methods [Retinexformer](https://github.com/caiyuanhao1998/Retinexformer) and [MST++](https://github.com/caiyuanhao1998/MST-plus-plus) (NTIRE 2022 Spectral Reconstruction Challenge Winner) ranked top-2 in the [NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640). Code, pre-trained weights, training logs, and enhancement results have been released in this repo. Feel free to use them! 🚀
 - **2024.02.15 :** [NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640) begins. Welcome to use our [Retinexformer](https://github.com/caiyuanhao1998/Retinexformer) or [MST++](https://github.com/caiyuanhao1998/MST-plus-plus) (NTIRE 2022 Spectral Reconstruction Challenge Winner) to participate in this challenge! :trophy:
 - **2023.11.03 :** The test setting of KinD, LLFlow, and recent diffusion models and the corresponding results on LOL are provided. Please note that we do not suggest this test setting because it uses the mean of the ground truth to obtain better results. But, if you want to follow KinD, LLFlow, and recent diffusion-based works for fair comparison, it is your choice to use this test setting. Please refer to the `Testing` part for details.
