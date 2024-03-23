@@ -140,7 +140,7 @@ Feel free to check the [Codalab leaderboard](https://codalab.lisn.upsaclay.fr/co
 ### Gallery
 |                          *NTIRE - dev - 2000x3000*                           |                          *NTIRE - challenge - 4000x6000*                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [<img src="/figure/ntire_dev.png" height="250px"/>](https://imgsli.com/MjQ5Mzk5) | [<img src="/figure/ntire_challenge.png" height="250px"/>]([https://imgsli.com/MjQ5Mzk5](https://imgsli.com/MjQ5NDAy)) |
+| [<img src="/figure/ntire_dev.png" height="250px"/>](https://imgsli.com/MjQ5Mzk5) | [<img src="/figure/ntire_challenge.png" height="250px"/>](https://imgsli.com/MjQ5NDAy) |
 
 &nbsp;
 
