@@ -334,7 +334,7 @@ class BaseModel():
 
             # best metric
             state['best_metric'] = kwargs['best_metric']
-            if self.opt['is_train'] and self.opt['use_amp']:
+            if self.opt['is_train'] and self.opt.get('use_amp', False):
                 state['amp_scaler'] = self.amp_scaler.state_dict()
             save_filename = f'{current_iter}.state'
             save_path = os.path.join(self.opt['path']['training_states'],

@@ -28,9 +28,7 @@ from pdb import set_trace as stx
 def parse_options(is_train=True):
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--opt', type=str, default='Options/RetinexFormer_LOL_v2_real.yml', help='Path to option YAML file.')
-    parser.add_argument('--gpu_id', type=str, default="0", help='GPU devices.')
-
+        '--opt', type=str, default='Options/RetinexFormer_LOL_v1.yml', help='Path to option YAML file.')
     parser.add_argument(
         '--launcher',
         choices=['none', 'pytorch', 'slurm'],
@@ -40,11 +38,6 @@ def parse_options(is_train=True):
     args = parser.parse_args()
     opt = parse(args.opt, is_train=is_train)
 
-    # 指定gpu
-    gpu_list = ','.join(str(x) for x in args.gpu_id)
-    os.environ['CUDA_VISIBLE_DEVICES'] = gpu_list
-    print('export CUDA_VISIBLE_DEVICES=' + gpu_list)
-    import torch
     # distributed settings
     if args.launcher == 'none':
         opt['dist'] = False
@@ -200,7 +193,6 @@ def main():
     train_loader, train_sampler, val_loader, total_epochs, total_iters = result
 
     # create model
-
     if resume_state:  # resume training
         check_resume(opt, resume_state['iter'])
         model = create_model(opt)
@@ -264,7 +256,7 @@ def main():
         train_sampler.set_epoch(epoch)
         prefetcher.reset()
         train_data = prefetcher.next()
-
+        
         while train_data is not None:
             data_time = time.time() - data_time
 
@@ -324,7 +316,7 @@ def main():
             # save models and training states
             if current_iter % opt['logger']['save_checkpoint_freq'] == 0:
                 logger.info('Saving models and training states.')
-                model.save(epoch, current_iter)
+                model.save(epoch, current_iter, best_metric=best_metric)
 
             # validation
             if opt.get('val') is not None and (current_iter %

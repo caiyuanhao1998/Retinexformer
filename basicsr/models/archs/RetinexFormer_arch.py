@@ -196,7 +196,7 @@ class FeedForward(nn.Module):
         x: [b,h,w,c]
         return out: [b,h,w,c]
         """
-        out = self.net(x.permute(0, 3, 1, 2))
+        out = self.net(x.permute(0, 3, 1, 2).contiguous())
         return out.permute(0, 2, 3, 1)
 
 
