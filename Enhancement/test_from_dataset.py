@@ -248,8 +248,8 @@ else:
                     restored_1 = self_ensemble(input_1, model_restoration)
                     restored_2 = self_ensemble(input_2, model_restoration)
                 else:
-                    restored_1 = model_restoration(input_1, model_restoration)
-                    restored_2 = model_restoration(input_2, model_restoration)
+                    restored_1 = model_restoration(input_1)
+                    restored_2 = model_restoration(input_2)
                 restored = torch.zeros_like(input_)
                 restored[:, :, :, 1::2] = restored_1
                 restored[:, :, :, 0::2] = restored_2
