@@ -41,6 +41,9 @@
 
 &nbsp;
 
+#### Awards
+<img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024.png"  height=240>
+
 ### Introduction
 This is a baseline and toolbox for wide-range low-light image enhancement. This repo **supports over 15 benchmarks** and extremely high-resolution (up to 4000x6000) low-light enhancement. Our method Retinexformer **won the second place** in the [NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640).  If you find this repo useful, please give it a star ⭐ and consider citing our paper in your research. Thank you.
 
