@@ -38,10 +38,6 @@
 
 </div>
 
-
-&nbsp;
-
-#### Awards
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024.png"  height=240>
 
 ### Introduction
