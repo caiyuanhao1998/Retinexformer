@@ -8,6 +8,8 @@
 [![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-179bd3)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎-179bd3)](https://zhuanlan.zhihu.com/p/657927878)
 
+<img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024.png"  height=240>
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-lol-v2-1)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol-v2-1?p=retinexformer-one-stage-retinex-based)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/retinexformer-one-stage-retinex-based/low-light-image-enhancement-on-mit-adobe-1)](https://paperswithcode.com/sota/low-light-image-enhancement-on-mit-adobe-1?p=retinexformer-one-stage-retinex-based)
 
@@ -37,8 +39,6 @@
 
 
 </div>
-
-<img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024.png"  height=240>
 
 ### Introduction
 This is a baseline and toolbox for wide-range low-light image enhancement. This repo **supports over 15 benchmarks** and extremely high-resolution (up to 4000x6000) low-light enhancement. Our method Retinexformer **won the second place** in the [NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640).  If you find this repo useful, please give it a star ⭐ and consider citing our paper in your research. Thank you.
