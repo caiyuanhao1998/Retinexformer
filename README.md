@@ -43,7 +43,7 @@ This is a baseline and toolbox for wide-range low-light image enhancement. This 
 
 ### Awards
 
-<img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024.png"  height=240>
+<img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
 - **2024.05.12 :** [RetinexMamba](https://github.com/YhuoyuH/RetinexMamba) based on our Retinexformer framework and this repo has been released. The first Mamba work on low-light enhancement. Thanks to the efforts of the authors.
