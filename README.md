@@ -46,6 +46,8 @@ This is a baseline and toolbox for wide-range low-light image enhancement. This 
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
+- **2024.07.03 :** We share more results of compared baseline methods to help your research. Feel free to download them from [Google Drive](https://drive.google.com/drive/folders/1P75bv6jBp8UxcLDhqMACvIQXck2sS9da?usp=sharing) or [Baidu Disk](https://pan.baidu.com/s/1ksGGV6nMyVVE6OqGuyO8_w?pwd=cyh2) :smile:
+- **2024.07.01 :** An enhanced version of Retinexformer has been accepted by ECCV 2024. Code will be released. Stay tuned. 🚀
 - **2024.05.12 :** [RetinexMamba](https://github.com/YhuoyuH/RetinexMamba) based on our Retinexformer framework and this repo has been released. The first Mamba work on low-light enhancement. Thanks to the efforts of the authors.
 - **2024.03.22 :** We release `distributed data parallel (DDP)` and `mix-precision` training strategies to help you train larger models. We release `self-ensemble` testing strategy to help you derive better results. In addition, we also release an adaptive `split-and-test` testing strategy for high-resolution up to 4000x6000 low-light image enhancement. Feel free to use them. 🚀
 - **2024.03.21 :** Our methods [Retinexformer](https://github.com/caiyuanhao1998/Retinexformer) and [MST++](https://github.com/caiyuanhao1998/MST-plus-plus) (NTIRE 2022 Spectral Reconstruction Challenge Winner) ranked top-2 in the [NTIRE 2024 Challenge on Low Light Enhancement](https://codalab.lisn.upsaclay.fr/competitions/17640). Code, pre-trained weights, training logs, and enhancement results have been released in this repo. Feel free to use them! 🚀
@@ -70,6 +72,8 @@ This is a baseline and toolbox for wide-range low-light image enhancement. This 
 - Results on LIME, NPE, MEF, DICM, and VV datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1cqBwmuXk83h6u1NZJVbfkg?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1rWa_WRX5bqlW2HnBNMUGFKWrou7gIQpO?usp=drive_link)
 
 - Results on ExDark nighttime object detection can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1ZvoPzYQePRc80-o7rrJuRQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1nZQnwKkGvswv--JunzgBLTXVRlOdcxb6?usp=sharing). Please use [this repo](https://github.com/cuiziteng/Illumination-Adaptive-Transformer/tree/main/IAT_high/IAT_mmdetection) to run experiments on the ExDark dataset
+
+- Results of some compared baseline methods are shared on [Google Drive](https://drive.google.com/drive/folders/1P75bv6jBp8UxcLDhqMACvIQXck2sS9da?usp=sharing) and [Baidu Disk](https://pan.baidu.com/s/1ksGGV6nMyVVE6OqGuyO8_w?pwd=cyh2)
 
 
 <details close>
