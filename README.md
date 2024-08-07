@@ -46,6 +46,7 @@ This is a baseline and toolbox for wide-range low-light image enhancement. This 
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
+- **2024.08.07 :** We share the code that can draw our teaser figure (the bar comparison) [here](https://github.com/caiyuanhao1998/draw_script/tree/master/bar). Feel free to use it in your research :smile:
 - **2024.07.03 :** We share more results of compared baseline methods to help your research. Feel free to download them from [Google Drive](https://drive.google.com/drive/folders/1P75bv6jBp8UxcLDhqMACvIQXck2sS9da?usp=sharing) or [Baidu Disk](https://pan.baidu.com/s/1ksGGV6nMyVVE6OqGuyO8_w?pwd=cyh2) :smile:
 - **2024.07.01 :** An enhanced version of Retinexformer has been accepted by ECCV 2024. Code will be released. Stay tuned. 🚀
 - **2024.05.12 :** [RetinexMamba](https://github.com/YhuoyuH/RetinexMamba) based on our Retinexformer framework and this repo has been released. The first Mamba work on low-light enhancement. Thanks to the efforts of the authors.
