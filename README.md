@@ -554,7 +554,7 @@ Train  our Retinexformer and MST++ with the distributed data parallel (DDP) stra
 conda activate torch2
 
 # Train Retinexformer with 8 GPUs on NTIRE
-bash train_multigpu.sh Options/RetinexFormer_NTIRE_8x2000.yml 0,1,2,3,4,5,6,7 4321
+bash train_multigpu.sh Options/RetinexFormer_NTIRE.yml 0,1,2,3,4,5,6,7 4321
 
 # Train MST++ with 4 GPUs on NTIRE
 bash train_multigpu.sh Options/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
