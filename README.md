@@ -415,7 +415,7 @@ NTIRE 2024 [Baidu Disk](https://pan.baidu.com/s/1Tl-LUhwsPh6XFA2SqR5c8Q?pwd=cyh2
     |    |    |    |    |--1.png
     |    |    |    |    |--3.png
     |    |    |    |     ...
-    |    |    |--minival
+    |    |    |--mini_val
     |    |    |    |--input
     |    |    |    |    |--1.png
     |    |    |    |    |--31.png
