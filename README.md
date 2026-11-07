@@ -4,9 +4,10 @@
 <p align="center"> <img src="figure/logo.png" width="200px"> </p>
 
 
-[![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2303.06705)
-[![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-179bd3)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
-[![zhihu](https://img.shields.io/badge/zhihu-知乎-179bd3)](https://zhuanlan.zhihu.com/p/657927878)
+[![arXiv](https://img.shields.io/badge/arXiv-paper-B31B1B)](https://arxiv.org/abs/2303.06705)
+[![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-FF5797)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
+[![zhihu](https://img.shields.io/badge/zhihu-知乎-0084FF)](https://zhuanlan.zhihu.com/p/657927878)
+[![Hugging Face](https://img.shields.io/badge/🤗_Hugging_Face-models-FFD21E)](https://huggingface.co/CaiYuanhao/Retinexformer)
 
 &nbsp;
 
