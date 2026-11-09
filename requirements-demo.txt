@@ -1,0 +1,7 @@
+# Standalone Gradio demo, Python >= 3.10. BasicSR installation is not required.
+torch>=1.11
+gradio==5.50.0
+einops>=0.6
+numpy>=1.24,<2
+Pillow>=10,<12
+PyYAML>=6
