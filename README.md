@@ -8,7 +8,7 @@
 [![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-FF5797)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
 [![zhihu](https://img.shields.io/badge/zhihu-知乎中文解读-0084FF)](https://zhuanlan.zhihu.com/p/657927878)
 [![Hugging Face](https://img.shields.io/badge/🤗_Hugging_Face-models-FFD21E)](https://huggingface.co/CaiYuanhao/Retinexformer)
-[![Online Demo](https://img.shields.io/badge/🤗_Hugging_Face-online_demo-FF9D00)](https://huggingface.co/spaces/CaiYuanhao/Retinexformer)
+[![Open in Hugging Face Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-md.svg)](https://huggingface.co/spaces/CaiYuanhao/Retinexformer)
 
 &nbsp;
 
@@ -25,7 +25,7 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
-- **2026.11.08 :** Release an [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) with example images, model selection, and brightness control. See [Section 3.1](#31-interactive-inference-demo-gradio) to run it locally. 🚀
+- **2026.11.08 :** Our [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) is now live on Hugging Face Spaces with ZeroGPU acceleration. Upload your own images or try the included examples! 🤗
 - **2026.11.07 :** Release our models on HuggingFace 🤗
 - **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
 - **2025.06.05 :** The winner solution of [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf) and their [challenge paper](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Shi_FusionNet_Multi-model_Linear_Fusion_Framework_for_Low-light_Image_Enhancement_CVPRW_2025_paper.pdf) 🏆
