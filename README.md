@@ -24,6 +24,7 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
+- **2026.11.08 :** Release an interactive [Gradio demo](#31-interactive-inference-demo-gradio) with example images, model selection, and brightness control. 🚀
 - **2026.11.07 :** Release our models on HuggingFace 🤗
 - **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
 - **2025.06.05 :** The winner solution of [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf) and their [challenge paper](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Shi_FusionNet_Multi-model_Linear_Fusion_Framework_for_Low-light_Image_Enhancement_CVPRW_2025_paper.pdf) 🏆
@@ -437,63 +438,25 @@ Download our models from [Baidu Disk](https://pan.baidu.com/s/13zNqyKuxvLBiQunIx
 
 ### 3.1 Interactive inference demo (Gradio)
 
-Run `app.py` to enhance your own images in a browser, without downloading a test dataset or installing BasicSR. The interface follows the upload / model selection / Gamma / result workflow of [HVI-CIDNet's demo](https://github.com/Fediory/HVI-CIDNet/blob/master/app.py) and uses Retinexformer's own inference code and weights.
-
-**Launch the demo** (run from the repository root):
-
-After installing the dependencies in Section 1.1 or 1.2 and downloading a checkpoint into `pretrained_weights`, activate that environment and run:
+After installing the environment in Section 1.1 or 1.2 and placing the downloaded models in `pretrained_weights`, launch the demo from the repository root:
 
 ```bash
 conda activate Retinexformer  # or: conda activate torch2
 python app.py
 ```
 
-Open **http://127.0.0.1:7862** in your browser. The demo automatically uses CUDA when available and falls back to CPU. It imports only the standalone model architecture, so trying the demo does not require installing BasicSR or preparing the benchmark datasets. For an existing Python >= 3.10 environment, you can also install the demo dependencies with `pip install -r requirements-demo.txt`.
+Open **http://127.0.0.1:7862**, upload an image or click a bundled example, choose a model, and click **Enhance image**. Use the download icon to save the result as a PNG.
 
-![Retinexformer inference demo with clickable examples and brightness control](figure/inference_demo.png)
+- **Output brightness** adjusts the enhanced result instantly after inference; 1.0 keeps the original model output.
+- **Gamma curve** adjusts the input before inference. Start with 1.0; click **Enhance image** again after changing it.
+- **Maximum image size** limits memory use; **Self-ensemble** averages eight predictions for optional refinement.
+- **Inference details** shows the selected model, device, elapsed time, image dimensions and settings.
 
-*Actual browser screenshot using the official `LOL_v1.pth`, Gamma 1.0, Output brightness 1.0 and an RTX A5000. Five LOL-v1 test images are bundled with the demo; [source and attribution](demo/examples/README.md).*
+CUDA is selected automatically when available. Use `python app.py --cpu` for CPU inference or `python app.py --device cuda:1` to select a GPU. On a remote server, forward the port with `ssh -L 7862:127.0.0.1:7862 username@server` before opening the URL locally.
 
-**Use the interface:**
+![Retinexformer inference demo with example images and brightness control](figure/inference_demo.png)
 
-1. Upload a low-light image into **Low-light image**, or click one of the five bundled thumbnails under **Example images**. Examples load into the input panel; click **Enhance image** to run your selected model. Changing the input clears the previous result and cached brightness preview.
-2. Choose a checkpoint in **Model weights**. The demo scans `pretrained_weights/` recursively; after adding a `.pth` file, click **Refresh weights**. MST++ checkpoints are excluded because this demo runs Retinexformer.
-3. Adjust **Output brightness** to control the enhanced image: 1.0 keeps the model output, values above 1 brighten it, and values below 1 darken it. After running enhancement once, releasing this slider updates the cached result immediately without rerunning the model. Every adjustment uses the original model output, so changes do not accumulate. The downloaded PNG includes this adjustment.
-4. Start with **Gamma curve = 1.0** (original model input). Values below 1 brighten the input before enhancement; values above 1 darken it. Changing Gamma requires clicking **Enhance image** again.
-5. Select **Maximum image size**. The default limits the longest edge to 1280 pixels and preserves aspect ratio. Choose **Original resolution** to retain the image dimensions; reduce this setting if GPU memory is insufficient.
-6. Optionally enable **Self-ensemble (8 passes)** to average predictions from flipped and rotated inputs, following the dataset testing script. This takes longer.
-7. Click **Enhance image**. Compare the two panels, inspect the device, elapsed time and output dimensions in **Inference details**, then use the download icon on **Enhanced result** to save a PNG.
-
-The five example images are included in [`demo/examples/`](demo/examples/README.md), so no dataset download is needed to try the demo. They are unmodified low-light inputs from the LOL-v1 test split; source links and attribution are recorded in that folder. Start with `LOL_v1.pth`, Gamma 1.0 and Output brightness 1.0.
-
-**Model weights** lists local checkpoints, not online models. If you download only `LOL_v1.pth`, only that model appears. Download the remaining files using the Hugging Face command at the start of Section 3 or the Baidu Disk / Google Drive links, then click **Refresh weights**. The nine released Retinexformer checkpoints are `LOL_v1`, `LOL_v2_real`, `LOL_v2_synthetic`, `FiveK`, `SID`, `SMID`, `SDSD_indoor`, `SDSD_outdoor`, and `NTIRE`. Each uses weights trained on its corresponding dataset; try different checkpoints for your images.
-
-**Inference details** reports the checkpoint filename, execution device (`cpu` or `cuda:N`), elapsed model execution time (including weight loading on the first run), original and processed image dimensions, input Gamma, self-ensemble state, and current output brightness. Brightness-only updates reuse the preceding model run and retain its timing.
-
-**Launch options:**
-
-```bash
-# CPU only
-python app.py --cpu
-
-# Choose a GPU and port explicitly
-python app.py --device cuda:1 --port 7862
-
-# Use another checkpoint directory, or select a checkpoint outside that directory
-python app.py --weights-dir /path/to/weights
-python app.py --weights /path/to/custom.pth --opt Options/RetinexFormer_LOL_v1.yml
-
-# Listen on the local network (or use --share for a public Gradio link)
-python app.py --host 0.0.0.0 --port 7862
-```
-
-When running on a remote server, you can keep the default local binding and forward the port from your own computer:
-
-```bash
-ssh -L 7862:127.0.0.1:7862 username@server
-```
-
-Then open `http://127.0.0.1:7862` on your computer. `--opt` reads only `network_g` and must match the checkpoint architecture; the default configuration matches the released Retinexformer checkpoints. Custom checkpoints may use `params_ema`, `params`, or a plain state dictionary, with optional `module.` prefixes. Weights are loaded once per selection and reused. Images are converted to RGB, padded to multiples of four and cropped back after inference. Resized inputs produce resized outputs; the demo does not silently upscale them. First-run timing includes loading the checkpoint. This demo does not require ground-truth images or apply GT-mean correction.
+*Five LOL-v1 example images are included; [source and attribution](demo/examples/README.md).*
 
 ### 3.2 Benchmark evaluation
 
