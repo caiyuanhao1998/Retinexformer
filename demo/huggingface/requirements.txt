@@ -1,0 +1,4 @@
+-r requirements-demo.txt
+torch==2.9.1
+spaces==0.51.3
+huggingface_hub>=0.33.5,<2

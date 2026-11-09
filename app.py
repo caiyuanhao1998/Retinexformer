@@ -190,7 +190,7 @@ def apply_brightness(image, brightness, details=""):
     return result, f"{details}\nOutput brightness: {float(brightness):.2f}×"
 
 
-def build_demo(enhancer):
+def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280):
     with gr.Blocks(
         title="Retinexformer · Low-Light Image Enhancement",
         theme=gr.themes.Soft(primary_hue="indigo", neutral_hue="slate"),
@@ -228,9 +228,12 @@ def build_demo(enhancer):
         with gr.Row():
             gamma = gr.Slider(0.1, 5, value=1, step=0.01, label="Gamma curve",
                               info="1 = original input; lower values brighten the input.")
-            max_size = gr.Dropdown(choices=[("Original resolution", 0), ("512 px", 512),
-                                           ("1024 px", 1024), ("1280 px", 1280), ("2048 px", 2048)],
-                                   value=1280, label="Maximum image size",
+            size_choices = max_size_choices if max_size_choices is not None else [
+                ("Original resolution", 0), ("512 px", 512), ("1024 px", 1024),
+                ("1280 px", 1280), ("2048 px", 2048),
+            ]
+            max_size = gr.Dropdown(choices=size_choices,
+                                   value=default_max_size, label="Maximum image size",
                                    info="Longest edge. Larger photos are resized before inference.")
             ensemble = gr.Checkbox(value=False, label="Self-ensemble (8 passes)",
                                    info="Average flipped / rotated predictions; takes longer.")
