@@ -72,7 +72,7 @@ parser.add_argument('--self_ensemble', action='store_true', help='Use self-ensem
 args = parser.parse_args()
 
 # 指定 gpu
-gpu_list = ','.join(str(x) for x in args.gpus)
+gpu_list = ','.join(gpu.strip() for gpu in args.gpus.split(','))
 os.environ['CUDA_VISIBLE_DEVICES'] = gpu_list
 print('export CUDA_VISIBLE_DEVICES=' + gpu_list)
 
@@ -149,6 +149,10 @@ if dataset in ['SID', 'SMID', 'SDSD_indoor', 'SDSD_outdoor']:
     if '~' in opt['dataroot_lq']:
         opt['dataroot_lq'] = os.path.expanduser('~') + opt['dataroot_lq'][1:]
     dataset = Dataset(opt)
+    if len(dataset) == 0:
+        raise FileNotFoundError(
+            f'No test samples found in {opt["dataroot_lq"]}; '
+            'check the dataset paths and split list.')
     print(f'test dataset length: {len(dataset)}')
     dataloader = DataLoader(dataset=dataset, batch_size=1, shuffle=False)
     with torch.inference_mode():
@@ -214,6 +218,14 @@ else:
 
     target_paths = natsorted(glob(os.path.join(
         target_dir, '*.png')) + glob(os.path.join(target_dir, '*.jpg')))
+    if not input_paths:
+        raise FileNotFoundError(
+            f'No input images found in {input_dir}; '
+            'prepare the dataset before testing.')
+    if len(input_paths) != len(target_paths):
+        raise ValueError(
+            f'Expected matching input/target counts, got '
+            f'{len(input_paths)} and {len(target_paths)}.')
 
     with torch.inference_mode():
         for inp_path, tar_path in tqdm(zip(input_paths, target_paths), total=len(target_paths)):
@@ -229,13 +241,15 @@ else:
 
             # Padding in case images are not multiples of 4
             b, c, h, w = input_.shape
-            H, W = ((h + factor) // factor) * \
-                factor, ((w + factor) // factor) * factor
-            padh = H - h if h % factor != 0 else 0
-            padw = W - w if w % factor != 0 else 0
+            split_test = h >= 3000 or w >= 3000
+            # Split-and-test halves the padded width. Each half must still
+            # be a multiple of four for the denoiser's two downsampling stages.
+            width_factor = factor * 2 if split_test else factor
+            padh = (-h) % factor
+            padw = (-w) % width_factor
             input_ = F.pad(input_, (0, padw, 0, padh), 'reflect')
 
-            if h < 3000 and w < 3000:
+            if not split_test:
                 if args.self_ensemble:
                     restored = self_ensemble(input_, model_restoration)
                 else:

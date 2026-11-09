@@ -124,6 +124,9 @@ def visualization(feature, save_path, type='max', colormap=cv2.COLORMAP_JET):
     cv2.imwrite(save_path, color_feat)
 
 def my_summary(test_model, H = 256, W = 256, C = 3, N = 1):
+    import torch
+    from fvcore.nn import FlopCountAnalysis
+
     model = test_model.cuda()
     print(model)
     inputs = torch.randn((N, C, H, W)).cuda()

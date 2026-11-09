@@ -1,7 +1,7 @@
 # e.g.
-# bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_8x2000.yml 0,1,2,3,4,5,6,7 4321
-# bash train_multigpu.sh Options/ntire/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
-# bash train_multigpu.sh Options/ntire/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
+# bash train_multigpu.sh Options/RetinexFormer_NTIRE.yml 0,1,2,3,4,5,6,7 4321
+# bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_4x1800.yml 0,1,2,3 4329
+# bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
 
 config=$1
 gpu_ids=$2

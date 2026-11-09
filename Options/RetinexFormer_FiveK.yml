@@ -11,7 +11,7 @@ datasets:
     name: TrainSet
     type: Dataset_PairedImage
     dataroot_gt: data/FiveK/train/target
-    dataroot_lq: data/FiveK/train/target
+    dataroot_lq: data/FiveK/train/input
     geometric_augs: true
     cache_data: true
     filename_tmpl: '{}'

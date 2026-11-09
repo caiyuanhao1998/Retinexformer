@@ -139,7 +139,7 @@ Feel free to check the [Codalab leaderboard](https://codalab.lisn.upsaclay.fr/co
 
 We suggest you use pytorch 1.11 to re-implement the results in our ICCV 2023 paper and pytorch 2 to re-implement the results in NTIRE 2024 Challenge because pytorch 2 can save more memory in mix-precision training.
 
-Both environments below use Python 3.10 so they can also run the Gradio inference demo in Section 3.1. `requirements-demo.txt` installs the shared demo dependencies without upgrading an already installed PyTorch 1.11 or 2.x. NumPy is kept below version 2 for compatibility with PyTorch 1.11.
+Both environments below use Python 3.10 so they can also run the Gradio inference demo in Section 3.1. `requirements-demo.txt` installs the shared demo dependencies without upgrading an already installed PyTorch 1.11 or 2.x. NumPy is pinned to 1.26.4 and MKL below 2024.1 to avoid binary compatibility and PyTorch import errors in these Conda environments. Setuptools is pinned to support the legacy BasicSR installation command below. See the [command validation report](docs/readme-validation.md) for tested versions, results and coverage limits.
 
 ### 1.1 Install the environment with Pytorch 1.11
 
@@ -151,12 +151,12 @@ conda activate Retinexformer
 
 - Install Dependencies
 ```
-conda install pytorch=1.11 torchvision cudatoolkit=11.3 -c pytorch
+conda install pytorch=1.11 torchvision=0.12 cudatoolkit=11.3 numpy=1.26.4 "mkl<2024.1" -c pytorch
 
 # Includes Gradio, Pillow, einops, NumPy and PyYAML for the inference demo
 pip install -r requirements-demo.txt matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm tensorboard
 
-pip install gdown addict future lmdb requests scipy yapf lpips
+pip install gdown addict future lmdb requests scipy yapf lpips fvcore "setuptools==72.1.0" cython
 ```
 
 - Install BasicSR
@@ -174,12 +174,12 @@ conda activate torch2
 
 - Install Dependencies
 ```
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pytorch=2.5.1 torchvision=0.20.1 torchaudio=2.5.1 pytorch-cuda=11.8 numpy=1.26.4 "mkl<2024.1" -c pytorch -c nvidia
 
 # Includes Gradio, Pillow, einops, NumPy and PyYAML for the inference demo
 pip install -r requirements-demo.txt matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm tensorboard
 
-pip install gdown addict future lmdb requests scipy yapf lpips thop timm
+pip install gdown addict future lmdb requests scipy yapf lpips fvcore "setuptools==72.1.0" cython thop timm
 ```
 
 - Install BasicSR
@@ -214,7 +214,7 @@ NTIRE 2024 [Baidu Disk](https://pan.baidu.com/s/1Tl-LUhwsPh6XFA2SqR5c8Q?pwd=cyh2
 
 (2) Please process the raw images of the MIT Adobe FiveK dataset following [the sRGB output mode](https://github.com/nothinglo/Deep-Photo-Enhancer/issues/38) or directly download and use the sRGB image pairs processed by us in the [Baidu Disk](https://pan.baidu.com/s/1ajax7N9JmttTwY84-8URxA?pwd=cyh2) (code:`cyh2`) and [Google Drive](https://drive.google.com/file/d/11HEUmchFXyepI4v3dhjnDnmhW_DgwfRR/view?usp=sharing)
 
-(3) Please download the `text_list.txt` from [Google Drive](https://drive.google.com/file/d/199qrfizUeZfgq3qVjrM74mZ_nlacgwiP/view?usp=sharing) or [Baidu Disk](https://pan.baidu.com/s/1GQfaQLI6tvB0IrTMPOM_9Q?pwd=ggbh) (code: `ggbh`) and then put it into the folder `data/SMID/SMID_Long_np/`
+(3) Please download the `test_list.txt` from [Google Drive](https://drive.google.com/file/d/199qrfizUeZfgq3qVjrM74mZ_nlacgwiP/view?usp=sharing) or [Baidu Disk](https://pan.baidu.com/s/1GQfaQLI6tvB0IrTMPOM_9Q?pwd=ggbh) (code: `ggbh`) and then save it as `data/SMID/test_list.txt`
 
 <details close>
 <summary><b> Then organize these datasets as follows: </b></summary>
@@ -352,6 +352,7 @@ NTIRE 2024 [Baidu Disk](https://pan.baidu.com/s/1Tl-LUhwsPh6XFA2SqR5c8Q?pwd=cyh2
     |    |    |    |     ...
     |    |    |     ...
     |    |--SMID
+    |    |    |--test_list.txt
     |    |    |--SMID_LQ_np
     |    |    |    |--0001
     |    |    |    |    |--0001.npy
@@ -402,7 +403,7 @@ NTIRE 2024 [Baidu Disk](https://pan.baidu.com/s/1Tl-LUhwsPh6XFA2SqR5c8Q?pwd=cyh2
     |    |    |    |    |--1.png
     |    |    |    |    |--3.png
     |    |    |    |     ...
-    |    |    |--minival
+    |    |    |--mini_val
     |    |    |    |--input
     |    |    |    |    |--1.png
     |    |    |    |    |--31.png
@@ -430,12 +431,11 @@ We also provide download links for LIME, NPE, MEF, DICM, and VV datasets that ha
 Download our models from [Hugging Face](https://huggingface.co/CaiYuanhao/Retinexformer) directly into `pretrained_weights`:
 
 ```bash
-pip install -U huggingface_hub
 hf download CaiYuanhao/Retinexformer --include "*.pth" --local-dir pretrained_weights
 ```
 
 
-Download our models from [Baidu Disk](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in folder `pretrained_weights`
+Download our models from [Baidu Disk](https://pan.baidu.com/s/13zNqyKuxvLBiQunIxG_VhQ?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1ynK5hfQachzc8y96ZumhkPPDXzHJwaQV?usp=drive_link). Put them in folder `pretrained_weights`. Keep the MST++ weights in `pretrained_weights/MST_Plus_Plus_NTIRE/`, matching the Hugging Face download layout.
 
 ### 3.1 Interactive inference demo (Gradio)
 
@@ -497,10 +497,10 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_FiveK.yml -
 python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_NTIRE.yml --weights pretrained_weights/NTIRE.pth --dataset NTIRE --self_ensemble
 
 # MST_Plus_Plus trained with 4 GPUs on NTIRE 
-python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_4x1800.yml --weights pretrained_weights/MST_Plus_Plus_4x1800.pth --dataset NTIRE --self_ensemble
+python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_4x1800.yml --weights pretrained_weights/MST_Plus_Plus_NTIRE/MST_Plus_Plus_4x1800.pth --dataset NTIRE --self_ensemble
 
 # MST_Plus_Plus trained with 8 GPUs on NTIRE 
-python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_8x1150.yml --weights pretrained_weights/MST_Plus_Plus_8x1150.pth --dataset NTIRE --self_ensemble
+python3 Enhancement/test_from_dataset.py --opt Options/MST_Plus_Plus_NTIRE_8x1150.yml --weights pretrained_weights/MST_Plus_Plus_NTIRE/MST_Plus_Plus_8x1150.pth --dataset NTIRE --self_ensemble
 
 ```
 
@@ -526,9 +526,12 @@ python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_LOL_v2_synt
 #### Evaluating the Params and FLOPS of models
 We have provided a function `my_summary()` in `Enhancement/utils.py`, please use this function to evaluate the parameters and computational complexity of the models, especially the Transformers as
 
-```shell
-from utils import my_summary
-my_summary(RetinexFormer(), 256, 256, 3, 1)
+```python
+from Enhancement.utils import my_summary
+from basicsr.models.archs.RetinexFormer_arch import RetinexFormer
+
+model = RetinexFormer(n_feat=40, stage=1, num_blocks=[1, 2, 2])
+my_summary(model, 256, 256, 3, 1)
 ```
 
 
@@ -572,6 +575,8 @@ python3 basicsr/train.py --opt Options/RetinexFormer_FiveK.yml
 
 Train  our Retinexformer and MST++ with the distributed data parallel (DDP) strategy of pytorch on the NTIRE 2024 Low-Light Enhancement dataset. Please note that we use the mix-precision strategy in the training process, which is controlled by the bool hyperparameter `use_amp`  in the config file.
 
+The original NTIRE patch sizes (2000, 1800 and 1150) ran out of memory on the validation server's 24 GB GPUs. If needed, reduce both `datasets.train.gt_size` and `datasets.train.gt_sizes` in the selected YAML (for example, to `512` and `[512]` with batch size 1). Smaller patches change the training setup; use the original settings when reproducing the reported results.
+
 ```shell
 # activate the enviroment
 conda activate torch2
@@ -580,12 +585,15 @@ conda activate torch2
 bash train_multigpu.sh Options/RetinexFormer_NTIRE.yml 0,1,2,3,4,5,6,7 4321
 
 # Train MST++ with 4 GPUs on NTIRE
-bash train_multigpu.sh Options/RetinexFormer_NTIRE_4x1800.yml 0,1,2,3,4,5,6,7 4329
+bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_4x1800.yml 0,1,2,3 4329
 
 # Train MST++ with 8 GPUs on NTIRE
 bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 4343
 
 ```
+
+If NCCL initialization hangs on a PCIe multi-GPU system, retry the same command with `NCCL_P2P_DISABLE=1` before `bash`. This workaround was required on the validation server. Select GPU IDs that are available on your machine; the examples above use four or eight GPUs.
+
 
 
 
@@ -594,7 +602,7 @@ bash train_multigpu.sh Options/MST_Plus_Plus_NTIRE_8x1150.yml 0,1,2,3,4,5,6,7 43
 
 ## 5. Citation
 
-```shell
+```bibtex
 @InProceedings{Cai_2023_ICCV,
     author    = {Cai, Yuanhao and Bian, Hao and Lin, Jing and Wang, Haoqian and Timofte, Radu and Zhang, Yulun},
     title     = {Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement},
