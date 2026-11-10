@@ -190,7 +190,7 @@ def apply_brightness(image, brightness, details=""):
     return result, f"{details}\nOutput brightness: {float(brightness):.2f}×"
 
 
-def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280):
+def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_success=None):
     with gr.Blocks(
         title="Retinexformer · Low-Light Image Enhancement",
         theme=gr.themes.Soft(primary_hue="indigo", neutral_hue="slate"),
@@ -259,6 +259,8 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280):
         def enhance(image, weight, gamma_value, size, use_ensemble, brightness_value):
             original, details = enhancer.process(image, weight, gamma_value, size, use_ensemble)
             adjusted, displayed_details = apply_brightness(original, brightness_value, details)
+            if on_success is not None:
+                on_success()
             return adjusted, displayed_details, original, details
 
         source.change(lambda: (None, None, "", ""),

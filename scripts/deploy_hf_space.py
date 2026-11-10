@@ -23,7 +23,7 @@ def prepare_bundle(destination, hardware):
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / name, target)
-    for name in ["space_app.py", "README.md", "requirements.txt"]:
+    for name in ["space_app.py", "space_success_stats.py", "README.md", "requirements.txt"]:
         shutil.copy2(ROOT / "demo/huggingface" / name, destination / name)
     # Spaces mounts requirements.txt alone under /tmp during its dependency
     # build, so nested relative -r files must be expanded before uploading.
