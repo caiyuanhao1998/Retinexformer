@@ -16,6 +16,9 @@ another initialized private dataset with the same schema. Tokens must never be
 committed to the repository. The interactive login's expiring OAuth token is not
 used as a runtime secret.
 
+If the Secret has another name, set the non-sensitive `SPACE_STATS_TOKEN_NAME`
+Variable to that name. Existing deployments use `cyh_track_liuliang`.
+
 Only dates, per-demo counts, instrumentation start times, and random event IDs
 for retry deduplication are stored. No images or user identifiers are collected.
 Optimistic commits prevent concurrent writers from overwriting one another.

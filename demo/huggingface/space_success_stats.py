@@ -63,7 +63,8 @@ class SuccessStats:
 
     @classmethod
     def from_env(cls):
-        token = os.environ.get("SPACE_STATS_TOKEN")
+        token_name = os.environ.get("SPACE_STATS_TOKEN_NAME", "SPACE_STATS_TOKEN")
+        token = os.environ.get(token_name)
         repo = os.environ.get("SPACE_STATS_REPO", "CaiYuanhao/space-success-stats")
         return cls(HubStore(repo, token) if token else None)
 

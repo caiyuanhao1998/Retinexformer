@@ -40,6 +40,17 @@ class MemoryStore:
 
 
 class CountersTest(unittest.TestCase):
+    def test_configurable_secret_name(self):
+        store = MemoryStore()
+        for settings in (
+            {"SPACE_STATS_TOKEN": "test-only-token"},
+            {"SPACE_STATS_TOKEN_NAME": "custom_stats_secret", "custom_stats_secret": "test-only-token"},
+        ):
+            with patch.dict("os.environ", settings, clear=True):
+                with patch("space_success_stats.HubStore", return_value=store) as constructor:
+                    self.assertIs(SuccessStats.from_env().store, store)
+                    constructor.assert_called_once_with("CaiYuanhao/space-success-stats", "test-only-token")
+
     def test_success_only_and_return_value_preserved(self):
         store = MemoryStore()
         stats = SuccessStats(store)
