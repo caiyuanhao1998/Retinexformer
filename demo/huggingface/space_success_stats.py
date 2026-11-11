@@ -2,6 +2,7 @@
 
 import copy
 import functools
+import html
 import json
 import logging
 import os
@@ -197,18 +198,82 @@ def summarize(data, channel, *, now=None):
     return summary, rows
 
 
-def add_usage_panel(demo, stats, channel):
-    import gradio as gr
-    with demo:
-        with gr.Accordion("Successful runs", open=False):
+def success_badges(data, channel, *, now=None):
+    """Keep unavailable history distinct from a measured count of zero."""
+    local = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo(TIMEZONE))
+    previous_end = local.date().replace(day=1) - timedelta(days=1)
+    previous_start = previous_end.replace(day=1)
+    previous, today = "—", "—"
+    previous_note = "No historical data"
+    today_note = "Success counts are temporarily unavailable"
+    started_at = data["started_at"].get(channel) if data else None
+    if started_at:
+        started = datetime.fromisoformat(started_at).astimezone(ZoneInfo(TIMEZONE))
+        today = f'{data["days"].get(local.date().isoformat(), {}).get(channel, 0):,}'
+        today_note = f"Successful runs on {local:%Y-%m-%d} ({TIMEZONE})"
+        if started.date() <= previous_end:
+            total = sum(values.get(channel, 0) for day, values in data["days"].items()
+                        if previous_start.isoformat() <= day <= previous_end.isoformat())
+            previous = f"{total:,}"
+            beginning = datetime.combine(previous_start, datetime.min.time(), tzinfo=ZoneInfo(TIMEZONE))
+            if started > beginning:
+                previous += " (partial)"
+            previous_note = f"Successful runs in {previous_start:%Y-%m}; tracking started {started:%Y-%m-%d}"
+
+    def chip(label, value, note):
+        return (
+            '<span style="display:inline-flex;align-items:center;gap:8px;padding:7px 12px;'
+            'border:1px solid var(--border-color-primary,#d1d5db);border-radius:999px;'
+            'background:var(--background-fill-secondary,#f9fafb);font-size:14px;" '
+            f'title="{html.escape(note, quote=True)}">'
+            f'<span style="color:var(--body-text-color-subdued,#6b7280)">{label}</span>'
+            f'<strong style="font-variant-numeric:tabular-nums">{html.escape(value)}</strong></span>'
+        )
+
+    return ('<div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px;" '
+            'aria-label="Successful runs">'
+            + chip("Last month", previous, previous_note)
+            + chip("Today", today, today_note) + '</div>')
+
+
+class UsageDisplay:
+    """Render badges below the title and refresh them after successful runs."""
+
+    def __init__(self, stats, channel):
+        self.stats = stats
+        self.channel = channel
+        self.header = None
+
+    def render_header(self):
+        import gradio as gr
+        self.header = gr.HTML(success_badges(None, self.channel), elem_classes=["success-counts"])
+
+    def load(self):
+        try:
+            data = self.stats.snapshot()
+        except Exception:
+            return success_badges(None, self.channel), "Success counts are temporarily unavailable.", []
+        summary, rows = summarize(data, self.channel)
+        note = summary.split("\n\n", 1)[-1]
+        return success_badges(data, self.channel), note, rows
+
+    def bind(self, demo, generation):
+        import gradio as gr
+        if self.header is None:
+            raise ValueError("Render the usage header before binding its events")
+        with gr.Accordion("Daily success history", open=False):
             summary = gr.Markdown("Loading success counts…")
             daily = gr.Dataframe(headers=[f"Date ({TIMEZONE})", "Successful runs"],
                                  datatype=["str", "number"], value=[], interactive=False,
                                  label="Daily successful runs", row_count=(0, "dynamic"))
             refresh = gr.Button("Refresh counts", size="sm")
+        outputs = [self.header, summary, daily]
 
-        def load_counts():
-            return stats.view(channel)
+        def refresh_counts():
+            with self.stats.lock:
+                self.stats.cached = None
+            return self.load()
 
-        demo.load(load_counts, outputs=[summary, daily], queue=False, api_name=False)
-        refresh.click(load_counts, outputs=[summary, daily], queue=False, api_name=False)
+        demo.load(self.load, outputs=outputs, queue=False, api_name=False)
+        refresh.click(refresh_counts, outputs=outputs, queue=False, api_name=False)
+        generation.success(self.load, outputs=outputs, queue=False, api_name=False)

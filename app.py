@@ -190,7 +190,7 @@ def apply_brightness(image, brightness, details=""):
     return result, f"{details}\nOutput brightness: {float(brightness):.2f}×"
 
 
-def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_success=None):
+def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_success=None, usage=None):
     with gr.Blocks(
         title="Retinexformer · Low-Light Image Enhancement",
         theme=gr.themes.Soft(primary_hue="indigo", neutral_hue="slate"),
@@ -203,6 +203,8 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
             "Upload a dark photo, choose a checkpoint, and reveal the details. "
             "Compare the input and enhanced image side by side, then download the result."
         )
+        if usage is not None:
+            usage.render_header()
         base_image = gr.State(value=None)
         base_details = gr.State(value="")
         with gr.Row():
@@ -267,10 +269,12 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
                       outputs=[result, base_image, base_details, info], queue=False, api_name=False)
         refresh.click(refresh_weights, outputs=weights, queue=False)
         clear.click(lambda: (None, "", ""), outputs=[base_image, base_details, info], queue=False)
-        run.click(enhance, [source, weights, gamma, max_size, ensemble, brightness],
-                  [result, info, base_image, base_details], api_name="enhance", concurrency_limit=1)
+        generation = run.click(enhance, [source, weights, gamma, max_size, ensemble, brightness],
+                               [result, info, base_image, base_details], api_name="enhance", concurrency_limit=1)
         brightness.release(apply_brightness, [base_image, brightness, base_details], [result, info],
                            queue=False, api_name=False)
+        if usage is not None:
+            usage.bind(demo, generation)
     return demo.queue(max_size=16)
 
 

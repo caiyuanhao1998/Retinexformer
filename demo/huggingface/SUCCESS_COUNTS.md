@@ -4,8 +4,9 @@ The hosted demo records one successful run after image enhancement and output
 brightness processing finish. Invalid inputs, failed inference, brightness-only
 adjustments, page visits, and downloads do not increment the counter.
 
-The **Successful runs** panel contains only the previous calendar month's total
-and a daily table for the previous and current months. Dates use
+Badges below the page title show the previous calendar month's total and today's
+successful runs. The **Daily success history** panel contains the daily table
+for the previous and current months. Dates use
 `America/Los_Angeles`. Missing history is displayed as **No historical data**;
 the first incomplete month is explicitly marked as partial.
 
@@ -25,7 +26,8 @@ Optimistic commits prevent concurrent writers from overwriting one another.
 If storage remains unavailable after retries, inference still returns its result
 and an anonymous `SUCCESS_COUNT_NOT_SAVED` entry is logged for recovery.
 
-The panel loads on page opening; **Refresh counts** updates it after a run.
+Badges load on page opening and update automatically after successful processing.
+**Refresh counts** reloads the badges and history from storage.
 Counts are cached for up to 30 seconds across processes.
 
 Run the persistence and calendar-boundary tests without GPU dependencies:

@@ -8,7 +8,7 @@ import torch
 from huggingface_hub import snapshot_download
 
 from app import ROOT, Enhancer, build_demo
-from space_success_stats import SuccessStats, add_usage_panel
+from space_success_stats import SuccessStats, UsageDisplay
 
 MODEL_REPO = "CaiYuanhao/Retinexformer"
 MODEL_REVISION = "51d9f18d5bd8fefc85d9dabf95caf2fa2a5f2018"
@@ -67,8 +67,8 @@ def make_demo():
         enhancer, max_size_choices=[(f"{size} px", size) for size in sizes],
         default_max_size=1280 if enhancer.device.type == "cuda" else 1024,
         on_success=lambda: stats.record("retinexformer"),
+        usage=UsageDisplay(stats, "retinexformer"),
     )
-    add_usage_panel(demo, stats, "retinexformer")
     return demo
 
 
