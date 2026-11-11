@@ -198,7 +198,7 @@ def summarize(data, channel, *, now=None):
     return summary, rows
 
 
-def success_badges(data, channel, *, now=None):
+def success_badges(data, channel, *, now=None, title=None):
     """Keep unavailable history distinct from a measured count of zero."""
     local = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo(TIMEZONE))
     previous_end = local.date().replace(day=1) - timedelta(days=1)
@@ -230,32 +230,42 @@ def success_badges(data, channel, *, now=None):
             f'<strong style="font-variant-numeric:tabular-nums">{html.escape(value)}</strong></span>'
         )
 
-    return ('<div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px;" '
+    badges = ('<div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;'
+            'margin-left:auto;flex:0 0 auto;" '
             'aria-label="Successful runs">'
             + chip("Last month", previous, previous_note)
             + chip("Today", today, today_note) + '</div>')
+    if title is None:
+        return badges
+    return ('<div style="display:flex;align-items:center;justify-content:space-between;'
+            'flex-wrap:wrap;gap:12px;width:100%;margin:0 0 8px;">'
+            '<h1 style="flex:1 1 20rem;min-width:0;margin:0;padding:0;'
+            'font-size:clamp(1.4rem,2.5vw,2rem);font-weight:600;line-height:1.25;">'
+            + html.escape(title) + '</h1>' + badges + '</div>')
 
 
 class UsageDisplay:
-    """Render badges below the title and refresh them after successful runs."""
+    """Align right-side badges with the title and refresh after successful runs."""
 
     def __init__(self, stats, channel):
         self.stats = stats
         self.channel = channel
         self.header = None
+        self.title = None
 
-    def render_header(self):
+    def render_header(self, title):
         import gradio as gr
-        self.header = gr.HTML(success_badges(None, self.channel), elem_classes=["success-counts"])
+        self.title = title
+        self.header = gr.HTML(success_badges(None, self.channel, title=title), elem_classes=["success-counts"])
 
     def load(self):
         try:
             data = self.stats.snapshot()
         except Exception:
-            return success_badges(None, self.channel), "Success counts are temporarily unavailable.", []
+            return success_badges(None, self.channel, title=self.title), "Success counts are temporarily unavailable.", []
         summary, rows = summarize(data, self.channel)
         note = summary.split("\n\n", 1)[-1]
-        return success_badges(data, self.channel), note, rows
+        return success_badges(data, self.channel, title=self.title), note, rows
 
     def bind(self, demo, generation):
         import gradio as gr

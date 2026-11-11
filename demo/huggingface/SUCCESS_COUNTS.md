@@ -4,7 +4,7 @@ The hosted demo records one successful run after image enhancement and output
 brightness processing finish. Invalid inputs, failed inference, brightness-only
 adjustments, page visits, and downloads do not increment the counter.
 
-Badges below the page title show the previous calendar month's total and today's
+Badges at the right edge of the title row show the previous calendar month's total and today's
 successful runs. The **Daily success history** panel contains the daily table
 for the previous and current months. Dates use
 `America/Los_Angeles`. Missing history is displayed as **No historical data**;

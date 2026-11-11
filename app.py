@@ -197,14 +197,15 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
         css=".gradio-container {max-width: 1240px !important;} footer {display: none !important;}",
         analytics_enabled=False,
     ) as demo:
+        if usage is not None:
+            usage.render_header("Retinexformer")
+        else:
+            gr.Markdown("# Retinexformer")
         gr.Markdown(
-            "# Retinexformer\n"
             "### Low-Light Image Enhancement\n"
             "Upload a dark photo, choose a checkpoint, and reveal the details. "
             "Compare the input and enhanced image side by side, then download the result."
         )
-        if usage is not None:
-            usage.render_header()
         base_image = gr.State(value=None)
         base_details = gr.State(value="")
         with gr.Row():
