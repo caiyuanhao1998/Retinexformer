@@ -194,7 +194,7 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
     with gr.Blocks(
         title="Retinexformer · Low-Light Image Enhancement",
         theme=gr.themes.Soft(primary_hue="indigo", neutral_hue="slate"),
-        css=".gradio-container {max-width: 1240px !important;} footer {display: none !important;}",
+        css=".gradio-container {max-width: 1240px !important; margin-inline: auto !important;} footer {display: none !important;}",
         analytics_enabled=False,
     ) as demo:
         if usage is not None:
