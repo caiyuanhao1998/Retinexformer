@@ -4,11 +4,11 @@ The hosted demo records one successful run after image enhancement and output
 brightness processing finish. Invalid inputs, failed inference, brightness-only
 adjustments, page visits, and downloads do not increment the counter.
 
-Badges at the right edge of the title row show the previous calendar month's total and today's
+Badges at the right edge of the title row show the last 30 days' total and today's
 successful runs. The **Daily success history** panel contains the daily table
-for the previous and current months. Dates use
+for today and the preceding 29 days. Dates use
 `America/Los_Angeles`. Missing history is displayed as **No historical data**;
-the first incomplete month is explicitly marked as partial.
+recorded activity is summed immediately, even before 30 days of history exist.
 
 Counters are stored in the private dataset `CaiYuanhao/space-success-stats`.
 Set `SPACE_STATS_TOKEN` as a Space Secret with a long-lived fine-grained token

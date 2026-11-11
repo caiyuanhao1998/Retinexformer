@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from unittest.mock import patch
 
-from space_success_stats import SuccessStats, summarize
+from space_success_stats import SuccessStats, summarize, success_badges
 
 
 def state():
@@ -95,28 +95,53 @@ class CountersTest(unittest.TestCase):
         self.assertEqual(store.data["days"]["2026-11-09"]["retinexformer"], 1)
         self.assertEqual(store.data["days"]["2026-11-10"]["retinexformer"], 1)
 
-    def test_previous_calendar_month_and_untracked_history(self):
+    def test_new_tracking_includes_this_month_without_waiting(self):
         data = state()
         data["started_at"]["retinexformer"] = "2026-11-10T12:00:00+00:00"
-        summary, rows = summarize(data, "retinexformer", now=datetime(2026, 11, 11, 12, tzinfo=timezone.utc))
-        self.assertIn("2026-10", summary)
-        self.assertIn("No historical data", summary)
-        self.assertEqual(rows, [["2026-11-11", 0], ["2026-11-10", 0]])
-        data["started_at"]["retinexformer"] = "2026-09-01T00:00:00+00:00"
-        data["days"] = {"2026-10-01": {"retinexformer": 2},
-                        "2026-10-31": {"retinexformer": 3},
-                        "2026-11-01": {"retinexformer": 100}}
-        summary, _ = summarize(data, "retinexformer", now=datetime(2026, 11, 11, 12, tzinfo=timezone.utc))
-        self.assertIn("5 successful runs", summary)
-        self.assertNotIn("partial month", summary)
+        data["days"] = {"2026-11-10": {"retinexformer": 6}, "2026-11-11": {"retinexformer": 18}}
+        when = datetime(2026, 11, 11, 20, tzinfo=timezone.utc)
+        summary, rows = summarize(data, "retinexformer", now=when)
+        self.assertIn("24 successful runs", summary)
+        self.assertEqual(rows, [["2026-11-11", 18], ["2026-11-10", 6]])
+        badges = success_badges(data, "retinexformer", now=when)
+        self.assertIn("Last 30 days", badges)
+        self.assertIn(">24</strong>", badges)
+        self.assertIn(">18</strong>", badges)
 
-    def test_partial_month_and_year_boundary(self):
+    def test_rolling_window_includes_exactly_30_local_dates(self):
         data = state()
-        data["started_at"]["retinexformer"] = "2026-12-15T12:00:00+00:00"
-        data["days"]["2026-12-20"] = {"retinexformer": 7}
-        summary, _ = summarize(data, "retinexformer", now=datetime(2027, 1, 2, 12, tzinfo=timezone.utc))
-        self.assertIn("2026-12", summary)
-        self.assertIn("7 successful runs (partial month)", summary)
+        data["started_at"]["retinexformer"] = "2026-09-01T00:00:00+00:00"
+        data["days"] = {"2026-10-12": {"retinexformer": 100},
+                        "2026-10-13": {"retinexformer": 2, "diffusiongs-object": 900},
+                        "2026-11-10": {"retinexformer": 3},
+                        "2026-11-11": {"retinexformer": 4},
+                        "2026-11-12": {"retinexformer": 1000}}
+        summary, rows = summarize(data, "retinexformer", now=datetime(2026, 11, 11, 20, tzinfo=timezone.utc))
+        self.assertIn("9 successful runs", summary)
+        self.assertEqual(len(rows), 30)
+        self.assertEqual(rows[0], ["2026-11-11", 4])
+        self.assertEqual(rows[-1], ["2026-10-13", 2])
+
+    def test_rolling_window_crosses_year_boundary(self):
+        data = state()
+        data["started_at"]["retinexformer"] = "2026-12-01T12:00:00+00:00"
+        data["days"] = {"2026-12-03": {"retinexformer": 100},
+                        "2026-12-04": {"retinexformer": 2},
+                        "2026-12-20": {"retinexformer": 7},
+                        "2027-01-02": {"retinexformer": 3}}
+        summary, rows = summarize(data, "retinexformer", now=datetime(2027, 1, 2, 20, tzinfo=timezone.utc))
+        self.assertIn("12 successful runs", summary)
+        self.assertEqual(rows[-1], ["2026-12-04", 2])
+
+    def test_measured_zero_is_distinct_from_untracked_history(self):
+        data = state()
+        when = datetime(2026, 11, 11, 20, tzinfo=timezone.utc)
+        badges = success_badges(data, "retinexformer", now=when)
+        self.assertIn(">—</strong>", badges)
+        data["started_at"]["retinexformer"] = "2026-11-11T12:00:00+00:00"
+        badges = success_badges(data, "retinexformer", now=when)
+        self.assertNotIn(">—</strong>", badges)
+        self.assertEqual(badges.count(">0</strong>"), 2)
 
     def test_new_process_recovers_persisted_counts(self):
         store = MemoryStore()

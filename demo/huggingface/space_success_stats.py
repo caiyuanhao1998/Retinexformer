@@ -167,58 +167,49 @@ class SuccessStats:
         return summarize(data, channel, now=now)
 
 
-def summarize(data, channel, *, now=None):
+def rolling_period(data, channel, *, now=None):
+    """Today and the preceding 29 local dates, using the stored daily counts."""
     local = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo(TIMEZONE))
-    month_start = local.date().replace(day=1)
-    previous_end = month_start - timedelta(days=1)
-    previous_start = previous_end.replace(day=1)
-    label = previous_start.strftime("%Y-%m")
-    start = data["started_at"].get(channel)
+    first_day = local.date() - timedelta(days=29)
+    start = data["started_at"].get(channel) if data else None
     if not start:
-        return f"**Last month ({label}):** No historical data. Tracking has not started.", []
+        return local, first_day, None, None
     started = datetime.fromisoformat(start).astimezone(ZoneInfo(TIMEZONE))
-    if started.date() > previous_end:
-        total_text = "No historical data"
-    else:
-        total = sum(values.get(channel, 0) for day, values in data["days"].items()
-                    if previous_start.isoformat() <= day <= previous_end.isoformat())
-        total_text = f"{total:,} successful runs"
-        beginning = datetime.combine(previous_start, datetime.min.time(), tzinfo=ZoneInfo(TIMEZONE))
-        if started > beginning:
-            total_text += " (partial month)"
+    total = sum(values.get(channel, 0) for day, values in data["days"].items()
+                if first_day.isoformat() <= day <= local.date().isoformat())
+    return local, first_day, started, total
+
+
+def summarize(data, channel, *, now=None):
+    local, first_day, started, total = rolling_period(data, channel, now=now)
+    if started is None:
+        return "**Last 30 days:** No historical data. Tracking has not started.", []
     rows = []
     day = local.date()
-    earliest = max(previous_start, started.date())
+    earliest = max(first_day, started.date())
     while day >= earliest:
         rows.append([day.isoformat(), data["days"].get(day.isoformat(), {}).get(channel, 0)])
         day -= timedelta(days=1)
-    summary = (f"**Last month ({label}):** {total_text}.\n\n"
-               f"Daily counts use {TIMEZONE}. Tracking started {started:%Y-%m-%d %H:%M %Z}. "
+    summary = (f"**Last 30 days ({first_day:%Y-%m-%d} – {local:%Y-%m-%d}):** "
+               f"{total:,} successful runs.\n\n"
+               f"The total includes today and the preceding 29 days, using {TIMEZONE}. "
+               f"Tracking started {started:%Y-%m-%d %H:%M %Z}. "
                "Earlier activity is not included. Only completed enhancement or generation runs count.")
     return summary, rows
 
 
 def success_badges(data, channel, *, now=None, title=None):
     """Keep unavailable history distinct from a measured count of zero."""
-    local = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo(TIMEZONE))
-    previous_end = local.date().replace(day=1) - timedelta(days=1)
-    previous_start = previous_end.replace(day=1)
-    previous, today = "—", "—"
-    previous_note = "No historical data"
+    local, first_day, started, total = rolling_period(data, channel, now=now)
+    recent, today = "—", "—"
+    recent_note = "No historical data"
     today_note = "Success counts are temporarily unavailable"
-    started_at = data["started_at"].get(channel) if data else None
-    if started_at:
-        started = datetime.fromisoformat(started_at).astimezone(ZoneInfo(TIMEZONE))
+    if started is not None:
+        recent = f"{total:,}"
         today = f'{data["days"].get(local.date().isoformat(), {}).get(channel, 0):,}'
         today_note = f"Successful runs on {local:%Y-%m-%d} ({TIMEZONE})"
-        if started.date() <= previous_end:
-            total = sum(values.get(channel, 0) for day, values in data["days"].items()
-                        if previous_start.isoformat() <= day <= previous_end.isoformat())
-            previous = f"{total:,}"
-            beginning = datetime.combine(previous_start, datetime.min.time(), tzinfo=ZoneInfo(TIMEZONE))
-            if started > beginning:
-                previous += " (partial)"
-            previous_note = f"Successful runs in {previous_start:%Y-%m}; tracking started {started:%Y-%m-%d}"
+        recent_note = (f"Successful runs from {first_day:%Y-%m-%d} through {local:%Y-%m-%d} "
+                       f"({TIMEZONE}); recorded since {started:%Y-%m-%d}")
 
     def chip(label, value, note):
         return (
@@ -233,7 +224,7 @@ def success_badges(data, channel, *, now=None, title=None):
     badges = ('<div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;'
             'margin-left:auto;flex:0 0 auto;" '
             'aria-label="Successful runs">'
-            + chip("Last month", previous, previous_note)
+            + chip("Last 30 days", recent, recent_note)
             + chip("Today", today, today_note) + '</div>')
     if title is None:
         return badges
