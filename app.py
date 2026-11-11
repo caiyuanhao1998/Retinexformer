@@ -200,7 +200,13 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
         if usage is not None:
             usage.render_header("Retinexformer")
         else:
-            gr.Markdown("# Retinexformer")
+            gr.HTML(
+                '<div style="display:flex;align-items:center;justify-content:space-between;'
+                'flex-wrap:wrap;gap:12px;width:100%;margin:0 0 8px;">'
+                '<h1 style="flex:1 1 20rem;min-width:0;margin:0;padding:0;'
+                'font-size:clamp(1.4rem,2.5vw,2rem);font-weight:600;line-height:1.25;">'
+                'Retinexformer</h1></div>'
+            )
         gr.Markdown(
             "### Low-Light Image Enhancement\n"
             "Upload a dark photo, choose a checkpoint, and reveal the details. "
@@ -232,7 +238,7 @@ def build_demo(enhancer, *, max_size_choices=None, default_max_size=1280, on_suc
             gamma = gr.Slider(0.1, 5, value=1, step=0.01, label="Gamma curve",
                               info="1 = original input; lower values brighten the input.")
             size_choices = max_size_choices if max_size_choices is not None else [
-                ("Original resolution", 0), ("512 px", 512), ("1024 px", 1024),
+                ("512 px", 512), ("1024 px", 1024),
                 ("1280 px", 1280), ("2048 px", 2048),
             ]
             max_size = gr.Dropdown(choices=size_choices,
