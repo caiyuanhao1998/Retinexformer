@@ -27,9 +27,8 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 
 ### News
 - **2026.11.23 :** We've built a [project page](https://caiyuanhao1998.github.io/project/Retinexformer/) to showcase more visual results, so feel free to check them out! 🤗
-- **2026.11.08 :** Our [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) is now live on Hugging Face Spaces with ZeroGPU acceleration. Upload your own images or try the included examples! 🤗
-- **2026.11.07 :** Release our models on HuggingFace 🤗
-- **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
+- **2026.11.08 :** We released our models on HuggingFace and built an [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) with ZeroGPU acceleration. Upload your own images or try the included examples! 🤗
+- **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congratulations to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
 - **2025.06.05 :** The winner solution of [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf) and their [challenge paper](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Shi_FusionNet_Multi-model_Linear_Fusion_Framework_for_Low-light_Image_Enhancement_CVPRW_2025_paper.pdf) 🏆
 - **2025.02.10 :** [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) has started. Welcome to use our Retinexformer and MST to participate in this challenge. 😄
 - **2024.09.15 :** An enhanced version of Retinexformer (ECCV 2024) has been released at [this repo](https://github.com/redrock303/ADF-LLIE). Feel free to check and use it. 🤗
