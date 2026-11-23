@@ -26,6 +26,7 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 <img src="./figure/ntire.png"  height=240> <img src="./figure/NTIRE_2024_award.png"  height=240>
 
 ### News
+- **2026.11.23 :** We've built a [project page](https://caiyuanhao1998.github.io/project/Retinexformer/) to showcase more visual results, so feel free to check them out! 🤗
 - **2026.11.08 :** Our [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) is now live on Hugging Face Spaces with ZeroGPU acceleration. Upload your own images or try the included examples! 🤗
 - **2026.11.07 :** Release our models on HuggingFace 🤗
 - **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
