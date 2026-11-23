@@ -7,8 +7,9 @@
 [![arXiv](https://img.shields.io/badge/arXiv-paper-B31B1B)](https://arxiv.org/abs/2303.06705)
 [![NTIRE](https://img.shields.io/badge/NTIRE_2024-leaderboard-FF5797)](https://codalab.lisn.upsaclay.fr/competitions/17640#results)
 [![zhihu](https://img.shields.io/badge/知乎-中文解读-0084FF)](https://zhuanlan.zhihu.com/p/657927878)
-[![Hugging Face models](figure/badges/huggingface_models.svg)](https://huggingface.co/CaiYuanhao/Retinexformer)
-[![Gradio online demo](figure/badges/gradio_online_demo.svg)](https://huggingface.co/spaces/CaiYuanhao/Retinexformer)
+[![Project](https://img.shields.io/badge/Project-page-2EA44F)](https://caiyuanhao1998.github.io/project/Retinexformer/)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-yellow)](https://huggingface.co/CaiYuanhao/Retinexformer)
+[![Object Demo](https://img.shields.io/badge/🤗%20Online-Demo-yellow)](https://huggingface.co/spaces/CaiYuanhao/Retinexformer)
 
 &nbsp;
 
