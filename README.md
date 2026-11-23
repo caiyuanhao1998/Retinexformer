@@ -29,6 +29,10 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 - **2026.11.23 :** We've built a [project page](https://caiyuanhao1998.github.io/project/Retinexformer/) to showcase more visual results, so feel free to check them out! 🤗
 - **2026.11.08 :** Our [online demo](https://huggingface.co/spaces/CaiYuanhao/Retinexformer) is now live on Hugging Face Spaces with ZeroGPU acceleration. Upload your own images or try the included examples! 🤗
 - **2026.11.07 :** Release our models on HuggingFace 🤗
+
+<details>
+<summary>Earlier news</summary>
+
 - **2026.05.23 :** The winner solution of [NTIRE 2026 Efficient Low-light Image Enhancement Challenge](https://www.codabench.org/competitions/13382/) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://arxiv.org/abs/2605.02212) 🏆
 - **2025.06.05 :** The winner solution of [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) is based on our Retinexformer. Congraduation to them. Feel free to check the [challenge report](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf) and their [challenge paper](https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Shi_FusionNet_Multi-model_Linear_Fusion_Framework_for_Low-light_Image_Enhancement_CVPRW_2025_paper.pdf) 🏆
 - **2025.02.10 :** [NTIRE 2025 Low-light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) has started. Welcome to use our Retinexformer and MST to participate in this challenge. 😄
@@ -49,6 +53,8 @@ This is a baseline and toolbox for low-light image enhancement. This repo **supp
 - **2023.09.20 :** Some results on ExDark nighttime object detection are released.
 - **2023.09.20 :** Code, models, results, and training logs have been released. Feel free to use them. ⭐
 - **2023.07.14 :** Our paper has been accepted by ICCV 2023. Code and Models will be released. :rocket:
+
+</details>
 
 ### Results
 - Results on LOL-v1, LOL-v2-real, LOL-v2-synthetic, SID, SMID, SDSD-in, SDSD-out, and MIT Adobe FiveK datasets can be downloaded from [Baidu Disk](https://pan.baidu.com/s/1DC6A-I9S7yJ-pmMVTLAHaw?pwd=cyh2) (code: `cyh2`) or [Google Drive](https://drive.google.com/drive/folders/1UCpHh3MkV4bxzWgiiULnb3BOPWS_8crP?usp=drive_link)
